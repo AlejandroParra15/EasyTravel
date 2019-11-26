@@ -7,7 +7,9 @@ import java.util.Map;
 
 /**
  * This class represents a weighted graph using a matrix
- * @author Cristian Sanchez - Juan Pablo Herrera
+ * @author Cristian Sanchez
+ * @author Juan Pablo Herrera
+ * @author Alejandro Parra
  * @version 1.0 - 11/2019
  * @param <V> Abstract data type that represents the object to be modeled in the graph
  */

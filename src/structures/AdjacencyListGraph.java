@@ -9,8 +9,6 @@ import javafx.beans.binding.When;
 
 public class AdjacencyListGraph<V> implements Graph<V> {
 	
-	private Algorithms alg;
-	
 	private Map<Integer, V> invVertices;
 	private Map<V, Integer> vertices;
 	
