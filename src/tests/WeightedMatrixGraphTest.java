@@ -8,7 +8,7 @@ import structures.WeightedMatrixGraph;
 
 class WeightedMatrixGraphTest {
 	
-	WeightedMatrixGraph<Point> WG;
+	private WeightedMatrixGraph<Point> WG;
 	
 	public void setupScenary() {
 		WG = new  WeightedMatrixGraph<Point>(4, false);
