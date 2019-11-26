@@ -7,14 +7,33 @@ import java.util.Map;
 
 public class AdjacencyListGraph<V> implements Graph<V> {
 	
+	/**
+	 * Inverse version of the vertex map, guves a vertex to a numeric value
+	 */
 	private Map<Integer, V> invVertices;
+	/**
+	 * Map that stores the vertices and gives them a numeric value
+	 */
 	private Map<V, Integer> vertices;
 	
+	/**
+	 * Adjacency list representation of the graph
+	 */
 	private List<List<Duplex<V, Integer>>> adjacencyList;
+	/**
+	 * Weighted matrix of the graph
+	 */
 	private int[][] weightedMatrix;
 	
+	/**
+	 * Attribute that represents if the graph is directed or not
+	 */
 	private boolean isDirected;
 	
+	/**
+	 * Constructor that creates an object representation of the adjacency list graph
+	 * @param d
+	 */
 	public AdjacencyListGraph(boolean d) {
 		isDirected = d;
 		adjacencyList = new ArrayList<List<Duplex<V, Integer>>>();
@@ -117,6 +136,9 @@ public class AdjacencyListGraph<V> implements Graph<V> {
 		return false;
 	}
 	
+	/**
+	 * The methods creates the Weight matrix from the adjacency list
+	 */
 	public void WeightedMatrix() {
 		for(int i=0; i<adjacencyList.size(); i++) {
 			List<Duplex<V, Integer>> trans = adjacencyList.get(i);

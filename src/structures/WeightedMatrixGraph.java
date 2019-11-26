@@ -15,6 +15,9 @@ import java.util.Map;
  */
 public class WeightedMatrixGraph<V> implements Graph<V> {
 	
+	/**
+	 * Constant used to represent the default amount of possible vertices
+	 */
 	public final static int DEFAULT_SIZE = 10;
 	
 	/**
