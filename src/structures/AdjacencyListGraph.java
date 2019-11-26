@@ -215,5 +215,9 @@ public class AdjacencyListGraph<V> implements Graph<V> {
 	public int[] Prim(int[][] p) {
 		return (vertices.size() != 0)? Algorithms.prim(weightedMatrix) : null;
 	}
+	
+	public int[][] getWeight() {
+		return weightedMatrix;
+	}
 
 }

@@ -174,5 +174,9 @@ public class WeightedMatrixGraph<V> implements Graph<V> {
 	public int[] Prim(int[][] p) {
 		return (vertices.size() != 0)? Algorithms.prim(Weight) : null;
 	}
+	
+	public int[][] getWeight() {
+		return Weight;
+	}
 
 }
