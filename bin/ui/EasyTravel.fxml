@@ -20,7 +20,14 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="853.0" prefWidth="1026.0" style="-fx-background-color: SNOW; -fx-border-color: BLACK;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.EasyTravelController">
    <bottom>
-      <Pane prefHeight="68.0" prefWidth="1024.0" style="-fx-background-color: darkorange; -fx-border-color: black;" BorderPane.alignment="CENTER" />
+      <Pane prefHeight="68.0" prefWidth="1024.0" style="-fx-background-color: darkorange; -fx-border-color: black;" BorderPane.alignment="CENTER">
+         <children>
+            <Label fx:id="lbMessage" layoutX="33.0" layoutY="11.0" prefHeight="46.0" prefWidth="976.0">
+               <font>
+                  <Font name="System Bold Italic" size="31.0" />
+               </font>
+            </Label>
+         </children></Pane>
    </bottom>
    <center>
       <Pane prefHeight="535.0" prefWidth="1024.0" style="-fx-border-color: BLACK; -fx-background-color: darkorange;" BorderPane.alignment="CENTER">

@@ -16,11 +16,12 @@ public class EasyTravel {
 			br = new BufferedReader(fr);
 
 			String sCurrentLine;
-
+			int cont = 0;
 			while ((sCurrentLine = br.readLine()) != null) {
 				String[] parts = sCurrentLine.split(",");
-				Point p = new Point(parts[0], Double.parseDouble(parts[1]), Double.parseDouble(parts[2]));
+				Point p = new Point(parts[0], Double.parseDouble(parts[1]), Double.parseDouble(parts[2]), cont);
 				points.add(p);
+				cont++;
 			}
 		} catch (IOException e) {
 			e.printStackTrace();

@@ -5,11 +5,13 @@ public class Point {
 	private String name;
 	private double latitude;
 	private double longitude;
+	private int id;
 	
-	public Point(String name, double latitude, double longitude) {
+	public Point(String name, double latitude, double longitude, int id) {
 		this.name = name;
 		this.latitude = latitude;
 		this.longitude = longitude;
+		this.setId(id);
 	}
 	
 	public String getName() {
@@ -35,6 +37,14 @@ public class Point {
 	public String toString() {
 		String info = name + " ; Latitud: " +latitude + "  Longitud: "+ longitude;
 		return info;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 	
 }
