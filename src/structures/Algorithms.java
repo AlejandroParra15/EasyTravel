@@ -7,17 +7,46 @@ import java.util.List;
 import java.util.Stack;
 
 import java.util.Queue;
-
+ /**
+  * This class stores the most common algorithms used in graphs
+  * @author Cristian Sanchez
+  * @author Juan Pablo Herrera
+  * @author Alejandro Parra
+  * @version 1.0
+  *
+  */
 public class Algorithms {
 	
+	/**
+	 * Breath First Search
+	 * @param <V> Generic value of the vertex
+	 * @param g Graph in which the algorithm is used
+	 * @param v initial vertex
+	 * @return List with the vertices of the graph
+	 */
 	public static <V> List<V> bfs(Graph<V> g, V v){
 		return traversal(g, v, new LinkedList<V>());
 	}
 	
+	/**
+	 * Depth First Search
+	 * @param <V> Generic value of the vertex
+	 * @param g Graph in which the algorithm is used
+	 * @param v initial vertex
+	 * @return List with the vertices of the graph
+	 */
 	public static <V> List<V> dfs (Graph<V> g, V v){
 		return traversal(g, v, new Stack<V>());
 	}
 	
+	/**
+	 * Method used by DFS to move through the graph using a stack
+	 * @param <V>
+	 * @param g Graph used
+	 * @param v initial vertex
+	 * @param ds Stack
+	 * @return List with the vertices of the graph
+	 */
 	private static <V> List<V> traversal(Graph<V> g, V v, Stack<V> ds){
 		List<V> trav = new ArrayList<>();
 
@@ -41,6 +70,14 @@ public class Algorithms {
 		return trav;
 	}
 	
+	/**
+	 * Method used by DFS to move through the graph using a stack
+	 * @param <V>
+	 * @param g Graph used
+	 * @param v initial vertex
+	 * @param ds Stack
+	 * @return List with the vertices of the graph
+	 */
 	private static <V> List<V> traversal(Graph<V> g, V v, Queue<V> ds){
 		List<V> trav = new ArrayList<>();
 
@@ -64,6 +101,13 @@ public class Algorithms {
 		return trav;
 	}
 	
+	/**
+	 * Dijkstras algorithm used in order to get shortest paths from an initial vertex 
+	 * @param <V> generic value of the vertex
+	 * @param g Weighted matrix
+	 * @param v initial vertex
+	 * @return Array with the shortest paths form the initial vertex
+	 */
 	public static <V> int[] dijkstra(int[][] g, int v){
 		int[] dis = new int[g.length];
 		boolean[] vis = new boolean[g.length];
@@ -89,6 +133,12 @@ public class Algorithms {
 		
 	}
 	
+	/**
+	 * Method to obtain the index of the minimum, and not visited, value of an array
+	 * @param dis Array to search
+	 * @param vis array of vertices visited
+	 * @return Index of the minimum value
+	 */
 	private static int minIndex(int[] dis, boolean[] vis) { 
         int min = Integer.MAX_VALUE;
         int indx = -1; 
@@ -102,6 +152,12 @@ public class Algorithms {
         return indx; 
     }
 	
+	/**
+	 * Floyd-Warshalls method to obtain the shortest path form every vertex to each other
+	 * @param <V> generic value of the vertices
+	 * @param w Weighted matrix
+	 * @return Matrix with the shortest path form the vertices to each other
+	 */
 	public static <V> int[][] floydWarshall(int[][] w){
 		int n = w.length;
 		int[][] D = w;
@@ -129,13 +185,18 @@ public class Algorithms {
 		return D;
 	}
 	
-	public static int[][] Kruskal(int[][] pesos){
+	/**
+	 * Kruskals algorithm to obtain the MST from a possibly Disconnected graph
+	 * @param w Weighted matrix
+	 * @return Matrix showing the connections of the MST
+	 */
+	public static int[][] Kruskal(int[][] w){
 		
 		DisjointSet<Integer> set = new DisjointSet<>();
 		
-		int[][] MST = new int[pesos.length][pesos.length];
+		int[][] MST = new int[w.length][w.length];
 
-		for(int i = 0; i < pesos.length; i++) {
+		for(int i = 0; i < w.length; i++) {
 			set.makeSet(i);
 		}
 		
@@ -162,9 +223,9 @@ public class Algorithms {
 		//-----------------------------------------------------------------
 		
 		ArrayList<obj> aristas = new ArrayList<>();		
-		for(int i = 0; i < pesos.length;  i++) {
-			for(int j = 0; j < pesos.length; j++) {
-				int peso = pesos[i][j];
+		for(int i = 0; i < w.length;  i++) {
+			for(int j = 0; j < w.length; j++) {
+				int peso = w[i][j];
 				if(peso > 0 && peso < Integer.MAX_VALUE) {
 					obj o = new obj(i, j, peso);
 					aristas.add(o);
@@ -197,18 +258,11 @@ public class Algorithms {
 		return MST;
 	}
 	
-	public static int minVertex(int[] weight, boolean[] inMst, int vertices){
-		int minValue = Integer.MAX_VALUE;
-		int minVertex = -1;
-		for (int i = 0; i < vertices; i++) {
-			if(inMst[i] == false && weight[i] < minValue){
-				minValue = weight[i];
-				minVertex = i;
-			}
-		}
-		return minVertex;
-	}
-				
+	/**
+	 * Prims algorithm to find the MST of a graph without any Disconnections
+	 * @param matrix Weighted matrix
+	 * @return array with the weight of the MST
+	 */
 	public static int[] prim(int[][] matrix){
 		int[] mst = new int[matrix.length];
 		int[] weight = new int[matrix.length];
@@ -222,7 +276,7 @@ public class Algorithms {
 		mst[0] = -1;			
 		
 		for (int i = 0; i < matrix.length-1; i++) {
-			int u = minVertex(weight, inMst, matrix.length);
+			int u = minIndex(weight, inMst);
 			inMst[u] = true;
 			for (int j = 0; j < matrix.length; j++) {
 				if(matrix[u][j] != 0 && inMst[j] == false && matrix[u][j] < weight[j]){
