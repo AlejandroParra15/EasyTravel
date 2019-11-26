@@ -18,11 +18,9 @@ public class EasyTravel {
 			String sCurrentLine;
 
 			while ((sCurrentLine = br.readLine()) != null) {
-				String[] parts = sCurrentLine.split(";");
-				for (int j = 0; j < parts.length; j++) {
-					Point p = new Point(parts[0], Double.parseDouble(parts[1]), Double.parseDouble(parts[2]));
-					points.add(p);
-				}
+				String[] parts = sCurrentLine.split(",");
+				Point p = new Point(parts[0], Double.parseDouble(parts[1]), Double.parseDouble(parts[2]));
+				points.add(p);
 			}
 		} catch (IOException e) {
 			e.printStackTrace();

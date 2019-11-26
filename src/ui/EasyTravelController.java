@@ -54,19 +54,23 @@ public class EasyTravelController {
     @FXML
     void SearchFileData(ActionEvent event) {
         JFileChooser chooser = new JFileChooser();
-        FileNameExtensionFilter filter = new FileNameExtensionFilter("txt");
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("TEXT FILES", "txt", "text");
         chooser.setFileFilter(filter);
         int returnVal = chooser.showOpenDialog(null);
         if(returnVal == JFileChooser.APPROVE_OPTION) {
         	tfPath1.setText(chooser.getSelectedFile().getAbsolutePath());
         }
-     
     }
 
     @FXML
     void loadFileData(ActionEvent event) {
     	String path = tfPath1.getText();
-    	easyTravel.load(path);
+    	points = easyTravel.load(path);
+    	String info = txtInfo1.getText();
+    	for (int i = 0; i < points.size(); i++) {
+			info+=points.get(i).toString()+"\n";
+		}
+    	txtInfo1.setText(info);
     }
 
     @FXML
@@ -81,8 +85,9 @@ public class EasyTravelController {
 
     @FXML
     void showMapTravel(ActionEvent event) {
-    	Mapa example = new Mapa("Colombia");
+    	TravelMap example = new TravelMap("Colombia");
 		example.generateMarker(example.darMap().getCenter());
+		example.generateArea(example.darMap().getCenter(), 400.0);
     }
 
     @FXML

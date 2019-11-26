@@ -1,5 +1,4 @@
 package ui;
-
 import java.awt.BorderLayout;
 import java.util.concurrent.TimeUnit;
 
@@ -10,22 +9,23 @@ import com.teamdev.jxmaps.swing.MapView;
 
 import com.teamdev.jxmaps.*;
 
-public class Mapa extends MapView {
-
-	/**
-	 * The map object
-	 */
+public class TravelMap extends MapView{
+	
+/**
+ * The map object
+ */
 	private static Map map;
 
-	/**
-	 * Editable circle options
-	 */
+/**
+ * Editable circle options 
+ */
 	private CircleOptions settingsCircle;
-	/**
-	 * Editable LineOptions
-	 */
-	private PolylineOptions settingsLine;
+/**
+ * Editable LineOptions
+ */
+	private  PolylineOptions settingsLine;
 
+	
 	public CircleOptions getSettingsCircle() {
 		return settingsCircle;
 	}
@@ -34,50 +34,58 @@ public class Mapa extends MapView {
 		this.settingsCircle = settingsCircle;
 	}
 
+
+
+
+
 	/**
 	 * Generate a marker on the LatLongPoint
-	 * 
 	 * @param pos of the wanted marker
 	 * @return Marker
 	 */
-	public Marker generateMarker(LatLng pos) {
-		Marker marker = null;
-		marker = new Marker(map);
-		marker.setPosition(pos);
-		map.setCenter(pos);
-
+	public Marker generateMarker(LatLng pos)
+	{
+		Marker marker=null;
+	
+			
+			 marker = new Marker(map);
+			marker.setPosition(pos);
+			map.setCenter(pos);
+	
 		System.out.println("Graficado marker");
 		return marker;
 	}
 
 	/**
 	 * Generate a simple nibe between two LatLong points
-	 * 
-	 * @param start   Start point of the line
-	 * @param end     End point of the line
+	 * @param start Start point of the line
+	 * @param end End point of the line
 	 * @param markers Do you wanna put a marker on the LatLong points
 	 */
-	public void generateSimplePath(LatLng start, LatLng end, Boolean markers) {
-		LatLng[] path = { start, end };
+	public void generateSimplePath(LatLng start,LatLng end,Boolean markers)
+	{
+		LatLng[] path = {start,end};
 		Polyline polyline = new Polyline(map);
 		polyline.setPath(path);
-		if (markers) {
+		if(markers)
+		{
 			generateMarker(start);
 			generateMarker(end);
 		}
 	}
 
-	public Map darMap() {
+	public Map darMap()
+	{
 		return map;
 	}
 
 	/**
 	 * Generate a circle area on the map
-	 * 
 	 * @param center LatLong of the center of the map
 	 * @param radius on meters
 	 */
-	public void generateArea(LatLng center, Double radius) {
+	public void generateArea(LatLng center,Double radius)
+	{
 		Circle circle = new Circle(map);
 		circle.setCenter(center);
 		circle.setRadius(radius);
@@ -87,13 +95,15 @@ public class Mapa extends MapView {
 
 	/**
 	 * Generate a line on the Map on the selected breakpoints
-	 * 
-	 * @param markers do you wanna put a marker on each vertex
-	 * @param path    Group of points of the Line
+	 * @param markers  do you wanna put a marker on each vertex 
+	 * @param path Group of points of the Line
 	 */
-	public void GenerateLine(boolean markers, LatLng... path) {
-		if (markers) {
-			for (LatLng p : path) {
+	public void GenerateLine(boolean markers,LatLng... path)
+	{
+		if(markers)
+		{
+			for(LatLng p:path)
+			{
 				generateMarker(p);
 			}
 		}
@@ -103,28 +113,26 @@ public class Mapa extends MapView {
 
 	/**
 	 * Create a new Map panel whit the param Name
-	 * 
 	 * @param pString Name for the map
 	 */
-	public Mapa(String pString) {
+	public TravelMap(String pString) {
 
-		JFrame frame = new JFrame("Easy Travel: " + pString);
+		JFrame frame = new JFrame("EasyTravel: "+pString);
 
-		settingsCircle = new CircleOptions();
+
+		settingsCircle=new CircleOptions();
 		settingsCircle.setFillColor("#FF0000");
-		settingsCircle.setRadius(2000000);
+		settingsCircle.setRadius(5000);
 		settingsCircle.setFillOpacity(0.35);
 
-		settingsLine = new PolylineOptions();
+		settingsLine=new PolylineOptions();
 		settingsLine.setGeodesic(true);
 		settingsLine.setStrokeColor("#FF0000");
 		settingsLine.setStrokeOpacity(1.0);
 		settingsLine.setStrokeWeight(2.0);
 
-		// Setting of a ready handler to MapView object. onMapReady will be called when
-		// map initialization is done and
-		// the map object is ready to use. Current implementation of onMapReady
-		// customizes the map object.
+		// Setting of a ready handler to MapView object. onMapReady will be called when map initialization is done and
+		// the map object is ready to use. Current implementation of onMapReady customizes the map object.
 		setOnMapReadyHandler(new MapReadyHandler() {
 			@Override
 			public void onMapReady(MapStatus status) {
@@ -136,9 +144,9 @@ public class Mapa extends MapView {
 					MapTypeControlOptions controlOptions = new MapTypeControlOptions();
 					controlOptions.setPosition(ControlPosition.BOTTOM_LEFT);
 					mapOptions.setMapTypeControlOptions(controlOptions);
-
+					
 					map.setOptions(mapOptions);
-					map.setCenter(new LatLng(3.450836, -76.532078));
+					map.setCenter(new LatLng(3.450836,-76.532078));
 					map.setZoom(10);
 
 				}
@@ -146,7 +154,8 @@ public class Mapa extends MapView {
 		});
 		System.out.print("Espere mientras se genera el mapa ");
 		try {
-			for (int i = 0; i < 10; i++) {
+			for(int i=0;i<10;i++)
+			{
 				TimeUnit.SECONDS.sleep(1);
 				System.out.print(".");
 			}
