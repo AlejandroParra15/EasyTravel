@@ -125,7 +125,7 @@ public class WeightedMatrixGraph<V> implements Graph<V> {
 
 	@Override
 	public int[] dijkstra(V v) {
-		return (vertices.size() != 0)? Algorithms.dijkstra(Weight, 0) : null;
+		return (vertices.size() != 0)? Algorithms.dijkstra(Weight, vertices.get(v)) : null;
 	}
 
 	@Override
@@ -178,6 +178,11 @@ public class WeightedMatrixGraph<V> implements Graph<V> {
 	@Override
 	public int[][] getWeight() {
 		return Weight;
+	}
+
+	@Override
+	public Map<Integer, List<Integer>> dijkstra2(V v) {
+		return (vertices.size() != 0)? Algorithms.dijkstra2(this, v) : null;
 	}
 
 }

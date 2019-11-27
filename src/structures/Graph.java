@@ -88,6 +88,13 @@ public interface Graph<V> {
 	public int[] dijkstra(V v);
 	
 	/**
+	 * Calls the dijkstra algorithm in order to get the shortest paths from one vertex to all the others
+	 * @param v initial vertex
+	 * @return array with the shortest paths from the initial vertex to the others
+	 */
+	public Map<Integer, List<Integer>> dijkstra2(V v);
+	
+	/**
 	 * calls the floyd-warshall algorithm to get the shortest paths from and to any vertex
 	 * @return matrix with the shortest paths
 	 */
