@@ -85,27 +85,27 @@ public interface Graph<V> {
 	 * @param v initial vertex
 	 * @return array with the shortest paths from the initial vertex to the others
 	 */
-	public double[] dijkstra(V v);
+	public int[] dijkstra(V v);
 	
 	/**
 	 * calls the floyd-warshall algorithm to get the shortest paths from and to any vertex
 	 * @return matrix with the shortest paths
 	 */
-	public double[][] floydWarshall();
+	public int[][] floydWarshall();
 	
 	/**
 	 * Calls the Kruskal algorithm to create the shortest path possible that connects all the vertices possibles for a possible disconnected graph
 	 * @param p Weighted matrix
 	 * @return Matrix showing the connections of the MST
 	 */
-	public double[][] Kruskal(int[][] p);
+	public int[][] Kruskal(int[][] p);
 	
 	/**
 	 * Calls the Prim algorithm the generate a MST for a graph without disconeccions
 	 * @param p Weighted matrix
 	 * @return Array of the weight of the MST
 	 */
-	public double[] Prim(int[][] p);
+	public int[] Prim(int[][] p);
 	
 	/**
 	 * The method gives the amount of vertices in the graph

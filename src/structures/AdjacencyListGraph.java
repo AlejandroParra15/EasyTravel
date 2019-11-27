@@ -28,7 +28,7 @@ public class AdjacencyListGraph<V> implements Graph<V> {
 	/**
 	 * Weighted matrix of the graph
 	 */
-	private double[][] weightedMatrix;
+	private int[][] weightedMatrix;
 	
 	/**
 	 * Attribute that represents if the graph is directed or not
@@ -42,7 +42,7 @@ public class AdjacencyListGraph<V> implements Graph<V> {
 	public AdjacencyListGraph(boolean d) {
 		isDirected = d;
 		adjacencyList = new ArrayList<List<Duplex<V, Integer>>>();
-		weightedMatrix = new double[DEFAULT_SIZE][DEFAULT_SIZE];
+		weightedMatrix = new int[DEFAULT_SIZE][DEFAULT_SIZE];
 		vertices = new HashMap<V, Integer>();
 	}
 
@@ -56,7 +56,7 @@ public class AdjacencyListGraph<V> implements Graph<V> {
 	}
 	
 	private void upgradeWeight() {
-		double[][] NW = new double[weightedMatrix.length+DEFAULT_SIZE][weightedMatrix.length+DEFAULT_SIZE];
+		int[][] NW = new int[weightedMatrix.length+DEFAULT_SIZE][weightedMatrix.length+DEFAULT_SIZE];
 		for(int i=0; i<weightedMatrix.length; i++) {
 			for(int j=0; j<weightedMatrix.length; j++) {
 				NW[i][j] = weightedMatrix[i][j];
@@ -72,7 +72,6 @@ public class AdjacencyListGraph<V> implements Graph<V> {
 				}
 			}
 		}
-		
 		weightedMatrix = NW;
 	}
 
@@ -193,12 +192,12 @@ public class AdjacencyListGraph<V> implements Graph<V> {
 	}
 
 	@Override
-	public double[] dijkstra(V v) {
+	public int[] dijkstra(V v) {
 		return (vertices.size() != 0)? Algorithms.dijkstra(weightedMatrix, 0) : null;
 	}
 
 	@Override
-	public double[][] floydWarshall() {
+	public int[][] floydWarshall() {
 		return (vertices.size() != 0)? Algorithms.floydWarshall(weightedMatrix) : null;
 	}
 
@@ -235,16 +234,16 @@ public class AdjacencyListGraph<V> implements Graph<V> {
 	}
 
 	@Override
-	public double[][] Kruskal(int[][] p) {
+	public int[][] Kruskal(int[][] p) {
 		return (vertices.size() != 0)? Algorithms.Kruskal(weightedMatrix) : null;
 	}
 
 	@Override
-	public double[] Prim(int[][] p) {
+	public int[] Prim(int[][] p) {
 		return (vertices.size() != 0)? Algorithms.prim(weightedMatrix) : null;
 	}
 	
-	public double[][] getWeight() {
+	public int[][] getWeight() {
 		return weightedMatrix;
 	}
 

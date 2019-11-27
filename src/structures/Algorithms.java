@@ -108,8 +108,8 @@ public class Algorithms {
 	 * @param v initial vertex
 	 * @return Array with the shortest paths form the initial vertex
 	 */
-	public static <V> double[] dijkstra(double[][] g, int v){
-		double[] dis = new double[g.length];
+	public static <V> int[] dijkstra(int[][] g, int v){
+		int[] dis = new int[g.length];
 		boolean[] vis = new boolean[g.length];
 		
 		
@@ -139,8 +139,8 @@ public class Algorithms {
 	 * @param vis array of vertices visited
 	 * @return Index of the minimum value
 	 */
-	private static int minIndex(double[] dis, boolean[] vis) { 
-		double min = Integer.MAX_VALUE;
+	private static int minIndex(int[] dis, boolean[] vis) { 
+        int min = Integer.MAX_VALUE;
         int indx = -1; 
   
         for (int i=0; i<dis.length; i++) 
@@ -158,10 +158,10 @@ public class Algorithms {
 	 * @param w Weighted matrix
 	 * @return Matrix with the shortest path form the vertices to each other
 	 */
-	public static <V> double[][] floydWarshall(double[][] w){
+	public static <V> int[][] floydWarshall(int[][] w){
 		int n = w.length;
-		double[][] D = w;
-		double v = 0;
+		int[][] D = w;
+		int v = 0;
 		
 		for(int k=0; k<n; k++) {
 			for(int i=0; i<n; i++) {
@@ -190,11 +190,11 @@ public class Algorithms {
 	 * @param w Weighted matrix
 	 * @return Matrix showing the connections of the MST
 	 */
-	public static double[][] Kruskal(double[][] w){
+	public static int[][] Kruskal(int[][] w){
 		
 		DisjointSet<Integer> set = new DisjointSet<>();
 		
-		double[][] MST = new double[w.length][w.length];
+		int[][] MST = new int[w.length][w.length];
 
 		for(int i = 0; i < w.length; i++) {
 			set.makeSet(i);
@@ -204,8 +204,8 @@ public class Algorithms {
 		class obj {
 			int A;
 			int B;
-			double P;			
-			obj(int a, int b, double p){
+			int P;			
+			obj(int a, int b, int p){
 				A = a;
 				B = b;
 				P = p;
@@ -216,7 +216,7 @@ public class Algorithms {
 			int getB() {
 				return B;
 			}
-			double getP() {
+			int getP() {
 				return P;
 			}
 		}
@@ -225,7 +225,7 @@ public class Algorithms {
 		ArrayList<obj> aristas = new ArrayList<>();		
 		for(int i = 0; i < w.length;  i++) {
 			for(int j = 0; j < w.length; j++) {
-				double peso = w[i][j];
+				int peso = w[i][j];
 				if(peso > 0 && peso < Integer.MAX_VALUE) {
 					obj o = new obj(i, j, peso);
 					aristas.add(o);
@@ -263,9 +263,9 @@ public class Algorithms {
 	 * @param matrix Weighted matrix
 	 * @return array with the weight of the MST
 	 */
-	public static double[] prim(double[][] matrix){
-		double[] mst = new double[matrix.length];
-		double[] weight = new double[matrix.length];
+	public static int[] prim(int[][] matrix){
+		int[] mst = new int[matrix.length];
+		int[] weight = new int[matrix.length];
 		boolean[] inMst = new boolean[matrix.length];
 		
 		for (int i = 0; i < matrix.length; i++) {

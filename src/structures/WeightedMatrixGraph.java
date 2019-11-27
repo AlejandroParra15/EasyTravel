@@ -29,8 +29,8 @@ public class WeightedMatrixGraph<V> implements Graph<V> {
 	/**
 	 * Weighted matrix used to represent the graph
 	 */
-	private double[][] Weight;
-	private double[][] minPath;
+	private int[][] Weight;
+	private int[][] minPath;
 	
 	/**
 	 * atribute used to represent if the grpah is directed or not
@@ -44,7 +44,7 @@ public class WeightedMatrixGraph<V> implements Graph<V> {
 	public WeightedMatrixGraph(boolean d) {
 		vertices = new HashMap<V, Integer>();
 		invVertices = new HashMap<Integer, V>();
-		Weight = new double[DEFAULT_SIZE][DEFAULT_SIZE];
+		Weight = new int[DEFAULT_SIZE][DEFAULT_SIZE];
 		isDirected = d;
 	}
 	
@@ -56,7 +56,7 @@ public class WeightedMatrixGraph<V> implements Graph<V> {
 	public WeightedMatrixGraph(int v, boolean d) {
 		vertices = new HashMap<V, Integer>();
 		invVertices = new HashMap<Integer, V>();
-		Weight = new double[v][v];
+		Weight = new int[v][v];
 		isDirected = d;
 	}
 
@@ -124,12 +124,12 @@ public class WeightedMatrixGraph<V> implements Graph<V> {
 	}
 
 	@Override
-	public double[] dijkstra(V v) {
+	public int[] dijkstra(V v) {
 		return (vertices.size() != 0)? Algorithms.dijkstra(Weight, 0) : null;
 	}
 
 	@Override
-	public double[][] floydWarshall() {
+	public int[][] floydWarshall() {
 		return (vertices.size() != 0)? Algorithms.floydWarshall(Weight) : null;
 	}
 
@@ -166,16 +166,16 @@ public class WeightedMatrixGraph<V> implements Graph<V> {
 	}
 
 	@Override
-	public double[][] Kruskal(int[][] p) {
+	public int[][] Kruskal(int[][] p) {
 		return (vertices.size() != 0)? Algorithms.Kruskal(Weight) : null;
 	}
 
 	@Override
-	public double[] Prim(int[][] p) {
+	public int[] Prim(int[][] p) {
 		return (vertices.size() != 0)? Algorithms.prim(Weight) : null;
 	}
 	
-	public double[][] getWeight() {
+	public int[][] getWeight() {
 		return Weight;
 	}
 
