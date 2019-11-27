@@ -57,6 +57,10 @@ public class AdjacencyListGraph<V> implements Graph<V> {
 		return true;
 	}
 	
+	public V getVertex(int n) {
+		return invVertices.get(n);
+	}
+	
 	private void upgradeWeight() {
 		int[][] NW = new int[weightedMatrix.length+DEFAULT_SIZE][weightedMatrix.length+DEFAULT_SIZE];
 		for(int i=0; i<weightedMatrix.length; i++) {
