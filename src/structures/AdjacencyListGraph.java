@@ -10,7 +10,7 @@ public class AdjacencyListGraph<V> implements Graph<V> {
 	/**
 	 * Constant used to represent the default amount of possible vertices
 	 */
-	public final static int DEFAULT_SIZE = 10;
+	public final static int DEFAULT_SIZE = 18;
 	
 	/**
 	 * Inverse version of the vertex map, guves a vertex to a numeric value
@@ -50,11 +50,9 @@ public class AdjacencyListGraph<V> implements Graph<V> {
 	@Override
 	public boolean addVertex(V v) {
 		vertices.put(v, vertices.size());
-		invVertices.put(vertices.size(),v);
+		invVertices.put(vertices.size()-1,v);
 		
 		adjacencyList.add(new ArrayList<Duplex<V, Integer>>());
-		
-		if(vertices.size() >= weightedMatrix.length) upgradeWeight();
 		
 		return true;
 	}
@@ -63,24 +61,6 @@ public class AdjacencyListGraph<V> implements Graph<V> {
 		return invVertices.get(n);
 	}
 	
-	private void upgradeWeight() {
-		int[][] NW = new int[weightedMatrix.length+DEFAULT_SIZE][weightedMatrix.length+DEFAULT_SIZE];
-		for(int i=0; i<weightedMatrix.length; i++) {
-			for(int j=0; j<weightedMatrix.length; j++) {
-				NW[i][j] = weightedMatrix[i][j];
-			}
-		}
-		for(int i=0; i<NW.length; i++) {
-			for(int j=0; j<NW.length; j++) {
-				if(i == j) {
-					NW[i][j] = 0;
-				}else {
-					NW[i][j] = Integer.MAX_VALUE;
-				}
-			}
-		}
-		weightedMatrix = NW;
-	}
 
 	@Override
 	public boolean addEdge(V v, V u) {
@@ -174,12 +154,20 @@ public class AdjacencyListGraph<V> implements Graph<V> {
 	 * The methods creates the Weight matrix from the adjacency list
 	 */
 	public void WeightedMatrix() {
+		for(int i=0; i<weightedMatrix.length; i++) {
+			for(int j=0; j<weightedMatrix.length; j++) {
+				if(i != j) weightedMatrix[i][j] = Integer.MAX_VALUE	;
+			}
+		}
 		for(int i=0; i<adjacencyList.size(); i++) {
 			List<Duplex<V, Integer>> trans = adjacencyList.get(i);
 			for(int j=0; j<trans.size(); j++) {
 				Duplex<V, Integer> dupla = trans.get(j);
 				weightedMatrix[i][vertices.get(dupla.getE1())] = dupla.getE2();
 			}
+		}
+		for (int i = 0; i < invVertices.size(); i++) {
+			System.out.println(i+") "+invVertices.get(i));
 		}
 	}
 

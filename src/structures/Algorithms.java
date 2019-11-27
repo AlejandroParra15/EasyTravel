@@ -157,11 +157,6 @@ public class Algorithms {
             vis[u] = true; 
 
             for (int j=0; j<dis.length; j++) {
-            	System.out.println("Vis en la J: "+vis[j]);
-            	System.out.println("g[u][j] != 0: "+(g[u][j]!= 0));
-            	System.out.println("dis[u] != Integer.MAX_VALUE: "+(dis[u] != Integer.MAX_VALUE));
-            	System.out.println("dis[u] + g[u][j] < dis[j]: "+(dis[u] + g[u][j] < dis[j]));
-            	System.out.println("------------------------------------------");
                 if (!vis[j] && g[u][j] != 0 && dis[u] != Integer.MAX_VALUE && dis[u] + g[u][j] < dis[j]) {
                    dis[j] = dis[u] + g[u][j];
                    x.get(j).add(u);
@@ -173,9 +168,9 @@ public class Algorithms {
 			if(i!=gg.getIndex(v)) x.get(i).add(i);
 		}
 		
-		//for (int i = 0; i < x.size(); i++) {
-		//	System.out.println(i+"  "+x.get(i));
-		//}
+		for (int i = 0; i < x.size(); i++) {
+			System.out.println(i+"  "+x.get(i));
+		}
 		
 		return x;
 		
