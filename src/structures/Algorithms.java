@@ -228,7 +228,7 @@ public class Algorithms {
 		return D;
 	}
 	
-	public static <V> int[][] floydWarshall2(Graph<V> gg, V vec){
+	public static <V> Map<Integer, List<Integer>> floydWarshall2(Graph<V> gg, V vec){
 		int[][] w = gg.getWeight();
 		int n = w.length;
 		int[][] D = w;
@@ -268,7 +268,7 @@ public class Algorithms {
 			if(i!=gg.getIndex(vec)) x.get(i).add(i);
 		}
 		
-		return D;
+		return x;
 	}
 	
 	/**
