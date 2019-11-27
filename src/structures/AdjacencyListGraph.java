@@ -8,6 +8,11 @@ import java.util.Map;
 public class AdjacencyListGraph<V> implements Graph<V> {
 	
 	/**
+	 * Constant used to represent the default amount of possible vertices
+	 */
+	public final static int DEFAULT_SIZE = 10;
+	
+	/**
 	 * Inverse version of the vertex map, guves a vertex to a numeric value
 	 */
 	private Map<Integer, V> invVertices;
@@ -37,7 +42,7 @@ public class AdjacencyListGraph<V> implements Graph<V> {
 	public AdjacencyListGraph(boolean d) {
 		isDirected = d;
 		adjacencyList = new ArrayList<List<Duplex<V, Integer>>>();
-		weightedMatrix = new int[vertices.size()][vertices.size()];
+		weightedMatrix = new int[DEFAULT_SIZE][DEFAULT_SIZE];
 		vertices = new HashMap<V, Integer>();
 	}
 
@@ -45,7 +50,28 @@ public class AdjacencyListGraph<V> implements Graph<V> {
 	public boolean addVertex(V v) {
 		vertices.put(v, vertices.size());
 		
+		if(vertices.size() >= weightedMatrix.length) upgradeWeight();
+		
 		return true;
+	}
+	
+	private void upgradeWeight() {
+		int[][] NW = new int[weightedMatrix.length+DEFAULT_SIZE][weightedMatrix.length+DEFAULT_SIZE];
+		for(int i=0; i<weightedMatrix.length; i++) {
+			for(int j=0; j<weightedMatrix.length; j++) {
+				NW[i][j] = weightedMatrix[i][j];
+			}
+		}
+		for(int i=0; i<NW.length; i++) {
+			for(int j=0; j<NW.length; j++) {
+				if(i == j) {
+					NW[i][j] = 0;
+				}
+				if(i >= weightedMatrix.length || j >= weightedMatrix.length) {
+					NW[i][j] = Integer.MAX_VALUE;
+				}
+			}
+		}
 	}
 
 	@Override
