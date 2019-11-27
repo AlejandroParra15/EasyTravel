@@ -166,7 +166,7 @@ public class EasyTravelController {
 		
 		AdjacencyListGraph<Point> adjacencyListGraph = easyTravel.getList();
 		Algorithms algorithms = new Algorithms();
-		Map<Integer, List<Integer>> x = algorithms.dijkstra2(adjacencyListGraph.getWeight(), points.get(idOne));
+		Map<Integer, List<Integer>> x = algorithms.dijkstra2(adjacencyListGraph, points.get(idOne));
 		List<Integer> list = x.get(idOne);
 		for (int i = 0; i < list.size(); i++) {
 			System.out.println(list.get(i));

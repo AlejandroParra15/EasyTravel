@@ -136,17 +136,18 @@ public class Algorithms {
 		
 	}
 	
-	public static <V> Map<Integer, List<Integer>> dijkstra2(int[][] g, Point v){
+	public static <V> Map<Integer, List<Integer>> dijkstra2(Graph<V> gg, V v){
+		int[][] g = gg.getWeight();
 		int[] dis = new int[g.length];
 		boolean[] vis = new boolean[g.length];
 		Map<Integer, List<Integer>> x = new HashMap<Integer, List<Integer>>();
 		
 		for(int i=0; i<dis.length; i++) {
 			x.put(i, new ArrayList<Integer>());
-			x.get(i).add(v.getId());
+			x.get(i).add(gg.getIndex(v));
 			dis[i] = Integer.MAX_VALUE;
 		}
-		dis[v.getId()] = 0;
+		dis[gg.getIndex(v)] = 0;
 		
 		for (int i=0; i<dis.length-1; i++) {  
             int u = minIndex(dis, vis); 
@@ -162,7 +163,7 @@ public class Algorithms {
         }
 		
 		for(int i=0; i<dis.length; i++) {
-			if(i!=v.getId()) x.get(i).add(i);
+			if(i!=gg.getIndex(v)) x.get(i).add(i);
 		}
 		
 		return x;

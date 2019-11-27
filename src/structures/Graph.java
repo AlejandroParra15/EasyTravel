@@ -133,4 +133,6 @@ public interface Graph<V> {
 	 */
 	public List<V> vertexAdjacent(V vertex);
 	
+	public int[][] getWeight();
+	
 }
