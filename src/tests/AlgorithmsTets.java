@@ -22,13 +22,13 @@ class AlgorithmsTets<V> {
 	@Test
 	void DFS() {
 		setupScenary();
-		Point v1 = new Point("cauca", 200, 200);
+		Point v1 = new Point("cauca", 200, 200, 1);
 		AG.addVertex(v1);
 		WG.addVertex(v1);
-		Point v2 = new Point("milo", 300, 300);
+		Point v2 = new Point("milo", 300, 300, 2);
 		AG.addVertex(v2);
 		WG.addVertex(v2);
-		Point v3 = new Point("cilo", 400, 400);
+		Point v3 = new Point("cilo", 400, 400, 3);
 		AG.addVertex(v3);
 		WG.addVertex(v3);
 		
@@ -46,13 +46,13 @@ class AlgorithmsTets<V> {
 	@Test
 	void BFS() {
 		setupScenary();
-		Point v1 = new Point("cauca", 200, 200);
+		Point v1 = new Point("cauca", 200, 200, 1);
 		AG.addVertex(v1);
 		WG.addVertex(v1);
-		Point v2 = new Point("milo", 300, 300);
+		Point v2 = new Point("milo", 300, 300, 2);
 		AG.addVertex(v2);
 		WG.addVertex(v2);
-		Point v3 = new Point("cilo", 400, 400);
+		Point v3 = new Point("cilo", 400, 400, 3);
 		AG.addVertex(v3);
 		WG.addVertex(v3);
 		
@@ -70,13 +70,13 @@ class AlgorithmsTets<V> {
 	@Test
 	void Dijkstra() {
 		setupScenary();
-		Point v1 = new Point("cauca", 200, 200);
+		Point v1 = new Point("cauca", 200, 200, 1);
 		AG.addVertex(v1);
 		WG.addVertex(v1);
-		Point v2 = new Point("milo", 300, 300);
+		Point v2 = new Point("milo", 300, 300, 2);
 		AG.addVertex(v2);
 		WG.addVertex(v2);
-		Point v3 = new Point("cilo", 400, 400);
+		Point v3 = new Point("cilo", 400, 400, 3);
 		AG.addVertex(v3);
 		WG.addVertex(v3);
 		
@@ -94,13 +94,13 @@ class AlgorithmsTets<V> {
 	@Test
 	void FloydWarshall() {
 		setupScenary();
-		Point v1 = new Point("cauca", 200, 200);
+		Point v1 = new Point("cauca", 200, 200, 1);
 		AG.addVertex(v1);
 		WG.addVertex(v1);
-		Point v2 = new Point("milo", 300, 300);
+		Point v2 = new Point("milo", 300, 300, 2);
 		AG.addVertex(v2);
 		WG.addVertex(v2);
-		Point v3 = new Point("cilo", 400, 400);
+		Point v3 = new Point("cilo", 400, 400, 3);
 		AG.addVertex(v3);
 		WG.addVertex(v3);
 		

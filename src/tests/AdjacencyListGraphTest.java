@@ -24,14 +24,14 @@ class AdjacencyListGraphTest<V> {
 	@Test
 	void AddVertex() { //this also checks VertexSize method
 		setupScenary();
-		Point v1 = new Point("cauca", 200, 200);
+		Point v1 = new Point("cauca", 200, 200, 1);
 		AG.addVertex(v1);
 		
 		if(AG.getVertexSize() != 1) {
 			fail();
 		}
 		
-		Point v2 = new Point("cauca", 200, 200);
+		Point v2 = new Point("cauca", 200, 200, 2);
 		AG.addVertex(v2);
 		
 		if(AG.getVertexSize() != 2) {
@@ -43,9 +43,9 @@ class AdjacencyListGraphTest<V> {
 	void AddEdge() { //this also checks the areConnected method
 		setupScenary();
 		
-		Point v1 = new Point("cauca", 200, 200);
+		Point v1 = new Point("cauca", 200, 200, 1);
 		AG.addVertex(v1);
-		Point v2 = new Point("milo", 300, 300);
+		Point v2 = new Point("milo", 300, 300, 2);
 		AG.addVertex(v2);
 		
 		AG.addEdge(v1, v2, 5);
@@ -60,9 +60,9 @@ class AdjacencyListGraphTest<V> {
 	void removeEdge() {
 		setupScenary();
 		
-		Point v1 = new Point("cauca", 200, 200);
+		Point v1 = new Point("cauca", 200, 200, 1);
 		AG.addVertex(v1);
-		Point v2 = new Point("milo", 300, 300);
+		Point v2 = new Point("milo", 300, 300, 2);
 		AG.addVertex(v2);
 		
 		AG.addEdge(v1, v2, 5);
@@ -78,12 +78,12 @@ class AdjacencyListGraphTest<V> {
 	@Test
 	void removeVertex() {
 		setupScenary();
-		Point v1 = new Point("cauca", 200, 200);
+		Point v1 = new Point("cauca", 200, 200, 1);
 		AG.addVertex(v1);
 		if(AG.getVertexSize() != 1) {
 			fail();
 		}
-		Point v2 = new Point("cauca", 200, 200);
+		Point v2 = new Point("cauca", 200, 200, 2);
 		AG.addVertex(v2);
 		
 		AG.removeVertex(v1);
