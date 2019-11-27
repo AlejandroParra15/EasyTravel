@@ -2,8 +2,10 @@ package structures;
 
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.Stack;
 
 import java.util.Queue;
@@ -112,24 +114,56 @@ public class Algorithms {
 		int[] dis = new int[g.length];
 		boolean[] vis = new boolean[g.length];
 		
-		
 		for (int i=0; i < dis.length; i++) { 
             dis[i] = Integer.MAX_VALUE; 
         }
 		dis[v] = 0;
 		
-		for (int i=0; i<v-1; i++) {  
+		for (int i=0; i<g.length-1; i++) {  
             int u = minIndex(dis, vis); 
   
             vis[u] = true; 
 
-            for (int j=0; j<v; j++) {
-                if (!vis[v] && g[u][v] != 0 && dis[u] != Integer.MAX_VALUE && dis[u] + g[u][v] < dis[v]) 
-                   dis[v] = dis[u] + g[u][v]; 
+            for (int j=0; j<g.length; j++) {
+                if (!vis[j] && g[u][j] != 0 && dis[u] != Integer.MAX_VALUE && dis[u] + g[u][j] < dis[j]) 
+                   dis[j] = dis[u] + g[u][j]; 
             }
         }
 		
 		return dis;
+		
+	}
+	
+	public static <V> Map<Integer, List<Integer>> dijkstra2(int[][] g, int v){
+		int[] dis = new int[g.length];
+		boolean[] vis = new boolean[g.length];
+		Map<Integer, List<Integer>> x = new HashMap<Integer, List<Integer>>();
+		
+		for(int i=0; i<dis.length; i++) {
+			x.put(i, new ArrayList<Integer>());
+			x.get(i).add(v);
+			dis[i] = Integer.MAX_VALUE;
+		}
+		dis[v] = 0;
+		
+		for (int i=0; i<dis.length-1; i++) {  
+            int u = minIndex(dis, vis); 
+  
+            vis[u] = true; 
+
+            for (int j=0; j<dis.length; j++) {
+                if (!vis[j] && g[u][j] != 0 && dis[u] != Integer.MAX_VALUE && dis[u] + g[u][j] < dis[j]) {
+                   dis[j] = dis[u] + g[u][j];
+                   x.get(j).add(u);
+                }
+            }
+        }
+		
+		for(int i=0; i<dis.length; i++) {
+			if(i!=v) x.get(i).add(i);
+		}
+		
+		return x;
 		
 	}
 	
