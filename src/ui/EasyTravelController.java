@@ -109,7 +109,8 @@ public class EasyTravelController {
 			cbDepartureCity.getItems().addAll(names);
 			cbDepartureCityTime.getItems().addAll(names);
 		} catch (Exception e) {
-			JOptionPane.showMessageDialog(null, "A ocurrido un error, intentalo de nuevo", "Ups!",JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, "A ocurrido un error, intentalo de nuevo", "Ups!",
+					JOptionPane.ERROR_MESSAGE);
 		}
 	}
 
@@ -141,7 +142,7 @@ public class EasyTravelController {
 		for (int i = 0; i < points.size(); i++) {
 			for (int j = 0; j < points.size(); j++) {
 				boolean connected = adjacencyListGraph.areConnected(points.get(i), points.get(j));
-				if(connected) {
+				if (connected) {
 					LatLng one = new LatLng(points.get(i).getLatitude(), points.get(i).getLongitude());
 					LatLng two = new LatLng(points.get(j).getLatitude(), points.get(j).getLongitude());
 					map.generateSimplePath(one, two, false);
@@ -160,16 +161,20 @@ public class EasyTravelController {
 	}
 
 	public void generatePath(TravelMap map) {
-		
+
 		int idOne = cbDepartureCity.getSelectionModel().getSelectedIndex();
 		int idTwo = cbArrivalCity.getSelectionModel().getSelectedIndex() + 1;
-		
+
 		AdjacencyListGraph<Point> adjacencyListGraph = easyTravel.getList();
-		Algorithms algorithms = new Algorithms();
-		Map<Integer, List<Integer>> x = algorithms.dijkstra2(adjacencyListGraph, points.get(idOne));
-		List<Integer> list = x.get(idOne);
+		Map<Integer, List<Integer>> x = adjacencyListGraph.dijkstra2(points.get(idOne));
+		List<Integer> list = x.get(adjacencyListGraph.getIndex(points.get(idOne)));
 		for (int i = 0; i < list.size(); i++) {
-			System.out.println(list.get(i));
+			System.out.print(list.get(i) + ",");
+			Point p = adjacencyListGraph.getVertex(list.get(i));
+			if (p != null) {
+				System.out.println(p.toString());
+			}
+
 		}
 		LatLng one = new LatLng(points.get(idOne).getLatitude(), points.get(idOne).getLongitude());
 		LatLng two = new LatLng(points.get(idTwo).getLatitude(), points.get(idTwo).getLongitude());

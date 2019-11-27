@@ -145,8 +145,10 @@ public class Algorithms {
 		for(int i=0; i<dis.length; i++) {
 			x.put(i, new ArrayList<Integer>());
 			x.get(i).add(gg.getIndex(v));
+			System.out.println(i+"   "+x.get(i));
 			dis[i] = Integer.MAX_VALUE;
 		}
+		System.out.println();
 		dis[gg.getIndex(v)] = 0;
 		
 		for (int i=0; i<dis.length-1; i++) {  
@@ -164,6 +166,10 @@ public class Algorithms {
 		
 		for(int i=0; i<dis.length; i++) {
 			if(i!=gg.getIndex(v)) x.get(i).add(i);
+		}
+		
+		for (int i = 0; i < x.size(); i++) {
+			System.out.println(i+"  "+x.get(i));
 		}
 		
 		return x;

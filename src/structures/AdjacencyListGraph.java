@@ -44,11 +44,13 @@ public class AdjacencyListGraph<V> implements Graph<V> {
 		adjacencyList = new ArrayList<List<Duplex<V, Integer>>>();
 		weightedMatrix = new int[DEFAULT_SIZE][DEFAULT_SIZE];
 		vertices = new HashMap<V, Integer>();
+		invVertices = new HashMap<Integer, V>();
 	}
 
 	@Override
 	public boolean addVertex(V v) {
 		vertices.put(v, vertices.size());
+		invVertices.put(vertices.size(),v);
 		
 		adjacencyList.add(new ArrayList<Duplex<V, Integer>>());
 		
