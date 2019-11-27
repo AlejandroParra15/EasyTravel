@@ -28,7 +28,7 @@ public class EasyTravel {
 				cont++;
 			}
 		} catch (IOException e) {
-			e.printStackTrace();
+			//e.printStackTrace();
 		} finally {
 			try {
 				if (br != null)

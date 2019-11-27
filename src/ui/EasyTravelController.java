@@ -1,9 +1,12 @@
 package ui;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 import com.teamdev.jxmaps.LatLng;
@@ -22,6 +25,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import model.*;
 import structures.AdjacencyListGraph;
+import structures.Algorithms;
 import threads.LoadMap;
 
 public class EasyTravelController {
@@ -77,8 +81,6 @@ public class EasyTravelController {
 				cbArrivalCityTime.getItems().remove(newValue);
 			}
 		});
-		
-		
 	}
 
 	@FXML
@@ -95,16 +97,20 @@ public class EasyTravelController {
 
 	@FXML
 	void loadFileData(ActionEvent event) {
-		String path = tfPath1.getText();
-		points = easyTravel.load(path);
-		String info = "";
-		for (int i = 0; i < points.size(); i++) {
-			info += points.get(i).toString() + "\n";
-			names.add(points.get(i).getName());
+		try {
+			String path = tfPath1.getText();
+			points = easyTravel.load(path);
+			String info = "";
+			for (int i = 0; i < points.size(); i++) {
+				info += points.get(i).toString() + "\n";
+				names.add(points.get(i).getName());
+			}
+			txtInfo1.setText(info);
+			cbDepartureCity.getItems().addAll(names);
+			cbDepartureCityTime.getItems().addAll(names);
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(null, "A ocurrido un error, intentalo de nuevo", "Ups!",JOptionPane.ERROR_MESSAGE);
 		}
-		txtInfo1.setText(info);
-		cbDepartureCity.getItems().addAll(names);
-		
 	}
 
 	@FXML
@@ -154,8 +160,17 @@ public class EasyTravelController {
 	}
 
 	public void generatePath(TravelMap map) {
+		
 		int idOne = cbDepartureCity.getSelectionModel().getSelectedIndex();
 		int idTwo = cbArrivalCity.getSelectionModel().getSelectedIndex() + 1;
+		
+		AdjacencyListGraph<Point> adjacencyListGraph = easyTravel.getList();
+		Algorithms algorithms = new Algorithms();
+		Map<Integer, List<Integer>> x = algorithms.dijkstra2(adjacencyListGraph.getWeight(), points.get(idOne));
+		List<Integer> list = x.get(idOne);
+		for (int i = 0; i < list.size(); i++) {
+			System.out.println(list.get(i));
+		}
 		LatLng one = new LatLng(points.get(idOne).getLatitude(), points.get(idOne).getLongitude());
 		LatLng two = new LatLng(points.get(idTwo).getLatitude(), points.get(idTwo).getLongitude());
 		map.generateMarker(one);

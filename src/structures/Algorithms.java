@@ -8,6 +8,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Stack;
 
+import model.Point;
+
 import java.util.Queue;
  /**
   * This class stores the most common algorithms used in graphs
@@ -134,17 +136,17 @@ public class Algorithms {
 		
 	}
 	
-	public static <V> Map<Integer, List<Integer>> dijkstra2(int[][] g, int v){
+	public static <V> Map<Integer, List<Integer>> dijkstra2(int[][] g, Point v){
 		int[] dis = new int[g.length];
 		boolean[] vis = new boolean[g.length];
 		Map<Integer, List<Integer>> x = new HashMap<Integer, List<Integer>>();
 		
 		for(int i=0; i<dis.length; i++) {
 			x.put(i, new ArrayList<Integer>());
-			x.get(i).add(v);
+			x.get(i).add(v.getId());
 			dis[i] = Integer.MAX_VALUE;
 		}
-		dis[v] = 0;
+		dis[v.getId()] = 0;
 		
 		for (int i=0; i<dis.length-1; i++) {  
             int u = minIndex(dis, vis); 
@@ -160,7 +162,7 @@ public class Algorithms {
         }
 		
 		for(int i=0; i<dis.length; i++) {
-			if(i!=v) x.get(i).add(i);
+			if(i!=v.getId()) x.get(i).add(i);
 		}
 		
 		return x;

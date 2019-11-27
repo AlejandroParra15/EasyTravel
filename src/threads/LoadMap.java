@@ -23,7 +23,7 @@ public class LoadMap extends Thread {
 				sleep(1000);
 				easyTravelController.addMessage(".");
 			}
-			if(easyTravelController.getMessage().equals("la ruta ")) {
+			if(msg.equals("la ruta ")) {
 				easyTravelController.addMessage(" | Ruta Creada");
 				easyTravelController.generatePath(travelMap);
 				sleep(2000);
