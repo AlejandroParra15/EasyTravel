@@ -60,6 +60,7 @@ public class EasyTravel {
 			int two = getID(divide[1]);
 			int distance = CalculateDistance(points.get(one).getLatitude(), points.get(one).getLongitude(),points.get(two).getLatitude(), points.get(two).getLongitude());
 			adjacencyListGraph.addEdge(points.get(one), points.get(two), distance);
+			//System.out.println(points.get(one).toString()+" - "+points.get(two).toString()+": "+distance);
 		}
 	}
 

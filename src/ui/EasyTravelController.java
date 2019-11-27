@@ -177,22 +177,22 @@ public class EasyTravelController {
 			System.out.println();
 		}
 		
-		Map<Integer, List<Integer>> x = adjacencyListGraph.dijkstra2(points.get(idOne));
+		Map<Integer, List<Integer>> x = adjacencyListGraph.floydWarshall2(points.get(idOne));
 		List<Integer> list = x.get(adjacencyListGraph.getIndex(points.get(idTwo)));
-		for (int i = 0; i < list.size(); i++) {
+		for (int i = 0; i < list.size()-1; i++) {
 			System.out.print(list.get(i) + ",");
 			Point p = adjacencyListGraph.getVertex(list.get(i));
 			if (p != null) {
 				System.out.println(p.toString());
+				LatLng one = new LatLng(p.getLatitude(), p.getLongitude());
+				Point p2 = adjacencyListGraph.getVertex(list.get(i+1));
+				LatLng two = new LatLng(p2.getLatitude(), p2.getLongitude());
+				map.generateArea(one, 400.0);
+				map.generateArea(two, 400.0);
+				map.generateSimplePath(one, two, false);
 			}
 
 		}
-		LatLng one = new LatLng(points.get(idOne).getLatitude(), points.get(idOne).getLongitude());
-		LatLng two = new LatLng(points.get(idTwo).getLatitude(), points.get(idTwo).getLongitude());
-		map.generateMarker(one);
-		map.generateArea(one, 400.0);
-		map.generateArea(two, 400.0);
-		map.generateSimplePath(one, two, false);
 	}
 
 	public void addMessage(String msg) {
