@@ -33,6 +33,8 @@ public class TravelMap extends MapView {
 	public void setSettingsCircle(CircleOptions settingsCircle) {
 		this.settingsCircle = settingsCircle;
 	}
+	
+	public static String name = "Colombia";
 
 	/**
 	 * Generate a marker on the LatLongPoint
@@ -105,9 +107,9 @@ public class TravelMap extends MapView {
 	 * 
 	 * @param pString Name for the map
 	 */
-	public TravelMap(String pString) {
+	public void makeMap() {
 
-		JFrame frame = new JFrame("EasyTravel: " + pString);
+		JFrame frame = new JFrame("EasyTravel: " + name);
 
 		settingsCircle = new CircleOptions();
 		settingsCircle.setFillColor("#FF0000");

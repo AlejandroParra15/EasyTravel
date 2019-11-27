@@ -1,6 +1,7 @@
 package ui;
 
 import java.util.ArrayList;
+import java.util.concurrent.TimeUnit;
 
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -52,7 +53,6 @@ public class EasyTravelController {
 	private TextField tfPath1;
 	@FXML
 	private TextArea txtInfo1;
-
 	ArrayList<Point> points;
 	ObservableList<String> names;
 	EasyTravel easyTravel;
@@ -110,17 +110,34 @@ public class EasyTravelController {
 
 	@FXML
 	void showMapPointsOfInterest(ActionEvent event) {
+		TravelMap map = new TravelMap();
+		map.makeMap();
+		LoadMap lm = new LoadMap(this, map, "el mapa ");
+		lm.setDaemon(true);
+		lm.start();
+	}
 
+	public void drawPoints(TravelMap map) {
+		for (int i = 0; i < points.size(); i++) {
+			LatLng one = new LatLng(points.get(i).getLatitude(), points.get(i).getLongitude());
+			try {
+				TimeUnit.MILLISECONDS.sleep(500);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			map.generateArea(one, 400.0);
+		}
 	}
 
 	@FXML
 	void showMapTravel(ActionEvent event) {
-		TravelMap map = new TravelMap("Colombia");
-		LoadMap lm = new LoadMap(this, map);
-		lm.start();
+		TravelMap map = new TravelMap();
+		map.makeMap();
+		LoadMap lm = new LoadMap(this, map, "la ruta ");
 		lm.setDaemon(true);
+		lm.start();
 	}
-	
+
 	public void generatePath(TravelMap map) {
 		int idOne = cbDepartureCity.getSelectionModel().getSelectedIndex();
 		int idTwo = cbArrivalCity.getSelectionModel().getSelectedIndex() + 1;
@@ -141,7 +158,7 @@ public class EasyTravelController {
 			}
 		});
 	}
-	
+
 	public void setMessage(String msg) {
 		Platform.runLater(new Runnable() {
 			@Override
@@ -149,6 +166,10 @@ public class EasyTravelController {
 				lbMessage.setText(msg);
 			}
 		});
+	}
+
+	public String getMessage() {
+		return lbMessage.getText();
 	}
 
 	@FXML
