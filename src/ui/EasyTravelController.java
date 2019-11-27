@@ -21,6 +21,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import model.*;
+import structures.AdjacencyListGraph;
 import threads.LoadMap;
 
 public class EasyTravelController {
@@ -76,6 +77,8 @@ public class EasyTravelController {
 				cbArrivalCityTime.getItems().remove(newValue);
 			}
 		});
+		
+		
 	}
 
 	@FXML
@@ -101,6 +104,7 @@ public class EasyTravelController {
 		}
 		txtInfo1.setText(info);
 		cbDepartureCity.getItems().addAll(names);
+		
 	}
 
 	@FXML
@@ -121,11 +125,22 @@ public class EasyTravelController {
 		for (int i = 0; i < points.size(); i++) {
 			LatLng one = new LatLng(points.get(i).getLatitude(), points.get(i).getLongitude());
 			try {
-				TimeUnit.MILLISECONDS.sleep(500);
+				TimeUnit.MILLISECONDS.sleep(200);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
 			map.generateArea(one, 400.0);
+		}
+		AdjacencyListGraph<Point> adjacencyListGraph = easyTravel.getList();
+		for (int i = 0; i < points.size(); i++) {
+			for (int j = 0; j < points.size(); j++) {
+				boolean connected = adjacencyListGraph.areConnected(points.get(i), points.get(j));
+				if(connected) {
+					LatLng one = new LatLng(points.get(i).getLatitude(), points.get(i).getLongitude());
+					LatLng two = new LatLng(points.get(j).getLatitude(), points.get(j).getLongitude());
+					map.generateSimplePath(one, two, false);
+				}
+			}
 		}
 	}
 
