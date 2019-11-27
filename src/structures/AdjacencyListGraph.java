@@ -50,7 +50,7 @@ public class AdjacencyListGraph<V> implements Graph<V> {
 	@Override
 	public boolean addVertex(V v) {
 		vertices.put(v, vertices.size());
-		invVertices.put(vertices.size()-1,v);
+		invVertices.put(vertices.get(v),v);
 		
 		adjacencyList.add(new ArrayList<Duplex<V, Integer>>());
 		
