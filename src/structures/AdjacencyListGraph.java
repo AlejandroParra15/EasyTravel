@@ -50,6 +50,8 @@ public class AdjacencyListGraph<V> implements Graph<V> {
 	public boolean addVertex(V v) {
 		vertices.put(v, vertices.size());
 		
+		adjacencyList.add(new ArrayList<Duplex<V, Integer>>());
+		
 		if(vertices.size() >= weightedMatrix.length) upgradeWeight();
 		
 		return true;
