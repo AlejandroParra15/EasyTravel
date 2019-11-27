@@ -228,6 +228,49 @@ public class Algorithms {
 		return D;
 	}
 	
+	public static <V> int[][] floydWarshall2(Graph<V> gg, V vec){
+		int[][] w = gg.getWeight();
+		int n = w.length;
+		int[][] D = w;
+		int v = 0;
+		Map<Integer, List<Integer>> x = new HashMap<Integer, List<Integer>>();
+		
+		for(int i=0; i<w.length; i++) {
+			x.put(i, new ArrayList<Integer>());
+			x.get(i).add(gg.getIndex(vec));
+		}
+		
+		for(int k=0; k<n; k++) {
+			for(int i=0; i<n; i++) {
+				for(int j=0; j<n; j++) {
+					
+					if(j != k || i != k) {
+						if(D[i][k] != Integer.MAX_VALUE && D[k][j] != Integer.MAX_VALUE) {
+							
+							v = D[i][k] + D[k][j];
+							
+							if(D[i][j] > v) {
+								D[i][j] = v;
+								if(i == gg.getIndex(vec)) {
+									x.get(j).add(k);
+								}
+							}
+							
+						}
+						
+					}
+					
+				}
+			}
+		}
+		
+		for(int i=0; i<w.length; i++) {
+			if(i!=gg.getIndex(vec)) x.get(i).add(i);
+		}
+		
+		return D;
+	}
+	
 	/**
 	 * Kruskals algorithm to obtain the MST from a possibly Disconnected graph
 	 * @param w Weighted matrix
