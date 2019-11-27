@@ -10,9 +10,10 @@ import structures.AdjacencyListGraph;
 public class EasyTravel {
 
 	public static AdjacencyListGraph<Point> adjacencyListGraph;
+	public static ArrayList<Point> points;
 
 	public ArrayList<Point> load(String path) {
-		ArrayList<Point> points = new ArrayList<>();
+		points = new ArrayList<>();
 		BufferedReader br = null;
 		FileReader fr = null;
 		try {
@@ -28,7 +29,7 @@ public class EasyTravel {
 				cont++;
 			}
 		} catch (IOException e) {
-			//e.printStackTrace();
+			// e.printStackTrace();
 		} finally {
 			try {
 				if (br != null)
@@ -48,64 +49,18 @@ public class EasyTravel {
 		for (int i = 0; i < points.size(); i++) {
 			adjacencyListGraph.addVertex(points.get(i));
 		}
-		adjacencyListGraph.addEdge(points.get(0), points.get(15), CalculateDistance(points.get(0).getLatitude(),
-				points.get(0).getLongitude(), points.get(15).getLatitude(), points.get(15).getLongitude()));
-		adjacencyListGraph.addEdge(points.get(0), points.get(6), CalculateDistance(points.get(0).getLatitude(),
-				points.get(0).getLongitude(), points.get(6).getLatitude(), points.get(6).getLongitude()));
-		adjacencyListGraph.addEdge(points.get(0), points.get(16), CalculateDistance(points.get(0).getLatitude(),
-				points.get(0).getLongitude(), points.get(16).getLatitude(), points.get(16).getLongitude()));
-		adjacencyListGraph.addEdge(points.get(7), points.get(14), CalculateDistance(points.get(7).getLatitude(),
-				points.get(7).getLongitude(), points.get(14).getLatitude(), points.get(14).getLongitude()));
-		adjacencyListGraph.addEdge(points.get(16), points.get(14), CalculateDistance(points.get(16).getLatitude(),
-				points.get(16).getLongitude(), points.get(14).getLatitude(), points.get(14).getLongitude()));
-		adjacencyListGraph.addEdge(points.get(17), points.get(12), CalculateDistance(points.get(17).getLatitude(),
-				points.get(17).getLongitude(), points.get(12).getLatitude(), points.get(12).getLongitude()));
-		adjacencyListGraph.addEdge(points.get(12), points.get(7), CalculateDistance(points.get(12).getLatitude(),
-				points.get(12).getLongitude(), points.get(7).getLatitude(), points.get(7).getLongitude()));
-		adjacencyListGraph.addEdge(points.get(17), points.get(9), CalculateDistance(points.get(17).getLatitude(),
-				points.get(17).getLongitude(), points.get(9).getLatitude(), points.get(9).getLongitude()));
-		adjacencyListGraph.addEdge(points.get(9), points.get(3), CalculateDistance(points.get(9).getLatitude(),
-				points.get(9).getLongitude(), points.get(3).getLatitude(), points.get(3).getLongitude()));
-		adjacencyListGraph.addEdge(points.get(17), points.get(6), CalculateDistance(points.get(17).getLatitude(),
-				points.get(17).getLongitude(), points.get(6).getLatitude(), points.get(6).getLongitude()));
-		adjacencyListGraph.addEdge(points.get(9), points.get(6), CalculateDistance(points.get(9).getLatitude(),
-				points.get(9).getLongitude(), points.get(6).getLatitude(), points.get(6).getLongitude()));
-		adjacencyListGraph.addEdge(points.get(3), points.get(6), CalculateDistance(points.get(3).getLatitude(),
-				points.get(3).getLongitude(), points.get(6).getLatitude(), points.get(6).getLongitude()));
-		adjacencyListGraph.addEdge(points.get(6), points.get(15), CalculateDistance(points.get(6).getLatitude(),
-				points.get(6).getLongitude(), points.get(15).getLatitude(), points.get(15).getLongitude()));
-		adjacencyListGraph.addEdge(points.get(15), points.get(12), CalculateDistance(points.get(15).getLatitude(),
-				points.get(15).getLongitude(), points.get(12).getLatitude(), points.get(12).getLongitude()));
-		adjacencyListGraph.addEdge(points.get(6), points.get(4), CalculateDistance(points.get(6).getLatitude(),
-				points.get(6).getLongitude(), points.get(4).getLatitude(), points.get(4).getLongitude()));
-		adjacencyListGraph.addEdge(points.get(15), points.get(4), CalculateDistance(points.get(15).getLatitude(),
-				points.get(15).getLongitude(), points.get(4).getLatitude(), points.get(4).getLongitude()));
-		adjacencyListGraph.addEdge(points.get(4), points.get(2), CalculateDistance(points.get(4).getLatitude(),
-				points.get(4).getLongitude(), points.get(2).getLatitude(), points.get(2).getLongitude()));
-		adjacencyListGraph.addEdge(points.get(2), points.get(13), CalculateDistance(points.get(2).getLatitude(),
-				points.get(2).getLongitude(), points.get(13).getLatitude(), points.get(13).getLongitude()));
-		adjacencyListGraph.addEdge(points.get(13), points.get(11), CalculateDistance(points.get(13).getLatitude(),
-				points.get(13).getLongitude(), points.get(11).getLatitude(), points.get(11).getLongitude()));
-		adjacencyListGraph.addEdge(points.get(11), points.get(10), CalculateDistance(points.get(11).getLatitude(),
-				points.get(11).getLongitude(), points.get(10).getLatitude(), points.get(12).getLongitude()));
-		adjacencyListGraph.addEdge(points.get(10), points.get(8), CalculateDistance(points.get(10).getLatitude(),
-				points.get(10).getLongitude(), points.get(8).getLatitude(), points.get(8).getLongitude()));
-		adjacencyListGraph.addEdge(points.get(8), points.get(1), CalculateDistance(points.get(8).getLatitude(),
-				points.get(8).getLongitude(), points.get(1).getLatitude(), points.get(1).getLongitude()));
-		adjacencyListGraph.addEdge(points.get(1), points.get(5), CalculateDistance(points.get(1).getLatitude(),
-				points.get(1).getLongitude(), points.get(5).getLatitude(), points.get(5).getLongitude()));
-		adjacencyListGraph.addEdge(points.get(5), points.get(4), CalculateDistance(points.get(5).getLatitude(),
-				points.get(5).getLongitude(), points.get(4).getLatitude(), points.get(4).getLongitude()));
-		adjacencyListGraph.addEdge(points.get(2), points.get(5), CalculateDistance(points.get(2).getLatitude(),
-				points.get(2).getLongitude(), points.get(5).getLatitude(), points.get(5).getLongitude()));
-		adjacencyListGraph.addEdge(points.get(13), points.get(5), CalculateDistance(points.get(13).getLatitude(),
-				points.get(13).getLongitude(), points.get(5).getLatitude(), points.get(5).getLongitude()));
-		adjacencyListGraph.addEdge(points.get(5), points.get(8), CalculateDistance(points.get(5).getLatitude(),
-				points.get(5).getLongitude(), points.get(8).getLatitude(), points.get(8).getLongitude()));
-		adjacencyListGraph.addEdge(points.get(13), points.get(8), CalculateDistance(points.get(13).getLatitude(),
-				points.get(13).getLongitude(), points.get(8).getLatitude(), points.get(8).getLongitude()));
-		adjacencyListGraph.addEdge(points.get(11), points.get(8), CalculateDistance(points.get(11).getLatitude(),
-				points.get(11).getLongitude(), points.get(8).getLatitude(), points.get(8).getLongitude()));
+		String all = "Cali-Jamundi,Cali-Candelaria,Cali-La Cumbre,Cali-El Cerrito,Candelaria-Florida,Jamundi-Florida,La Cumbre-El Cerrito"
+				+ ",El Cerrito-Candelaria,La Cumbre-Dagua,Dagua-Buenaventura,La Cumbre-Darien,Dagua-Darien,Buenaventura-Darien,Darien-Buga,Buga-El Cerrito,Darien-Bugalagrande"
+				+ ",Buga-Bugalagrande,Bugalagrande-Bolivar,Bolivar-El Dovio,El Dovio-El Cairo,El Cairo-El Aguila,El Aguila-Cartago,Cartago-Alcala,Alcala-Caicedonia,Caicedonia-Bugalagrande"
+				+ ",Bolivar-Caicedonia,El Dovio-Caicedonia,Caicedonia-Cartago,El Dovio-Cartago,El Cairo-Cartago";
+		String[] relations = all.split(",");
+		for (int i = 0; i < relations.length; i++) {
+			String[] divide = relations[i].split("-");
+			int one = getID(divide[0]);
+			int two = getID(divide[1]);
+			int distance = CalculateDistance(points.get(one).getLatitude(), points.get(one).getLongitude(),points.get(two).getLatitude(), points.get(two).getLongitude());
+			adjacencyListGraph.addEdge(points.get(one), points.get(two), distance);
+		}
 	}
 
 	public int CalculateDistance(double startLat, double startLong, double endLat, double endLong) {
@@ -138,9 +93,18 @@ public class EasyTravel {
 		 */
 		return Math.pow(Math.sin(val / 2), 2);
 	}
-	
+
 	public AdjacencyListGraph<Point> getList() {
 		return adjacencyListGraph;
+	}
+
+	public int getID(String name) {
+		int id = -1;
+		for (int i = 0; i < points.size(); i++) {
+			if (points.get(i).getName().equals(name))
+				id = points.get(i).getId();
+		}
+		return id;
 	}
 
 }

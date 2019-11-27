@@ -74,8 +74,7 @@ public class AdjacencyListGraph<V> implements Graph<V> {
 			for(int j=0; j<NW.length; j++) {
 				if(i == j) {
 					NW[i][j] = 0;
-				}
-				if(i >= weightedMatrix.length || j >= weightedMatrix.length) {
+				}else {
 					NW[i][j] = Integer.MAX_VALUE;
 				}
 			}
@@ -180,11 +179,6 @@ public class AdjacencyListGraph<V> implements Graph<V> {
 			for(int j=0; j<trans.size(); j++) {
 				Duplex<V, Integer> dupla = trans.get(j);
 				weightedMatrix[i][vertices.get(dupla.getE1())] = dupla.getE2();
-			}
-		}
-		for(int i=0; i<weightedMatrix.length; i++) {
-			for(int j=0; j<weightedMatrix.length; j++) {
-				if(i != j) weightedMatrix[i][j] = Integer.MAX_VALUE	;
 			}
 		}
 	}
