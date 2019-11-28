@@ -164,34 +164,21 @@ public class EasyTravelController {
 
 		int idOne = searchByName(cbDepartureCity.getSelectionModel().getSelectedItem());
 		int idTwo = searchByName(cbArrivalCity.getSelectionModel().getSelectedItem());
-		
+
 		AdjacencyListGraph<Point> adjacencyListGraph = easyTravel.getList();
 		adjacencyListGraph.WeightedMatrix();
-		for (int i = 0; i < adjacencyListGraph.getWeight().length; i++) {
-			for (int j = 0; j < adjacencyListGraph.getWeight().length; j++) {
-				if(adjacencyListGraph.getWeight()[i][j]==Integer.MAX_VALUE)
-					System.out.print(".. ");
-				else
-					System.out.print(adjacencyListGraph.getWeight()[i][j]+" ");
-			}
-			System.out.println();
-		}
-		
-		Map<Integer, List<Integer>> x = adjacencyListGraph.floydWarshall2(points.get(idOne));
-		List<Integer> list = x.get(adjacencyListGraph.getIndex(points.get(idTwo)));
-		for (int i = 0; i < list.size()-1; i++) {
-			System.out.print(list.get(i) + ",");
-			Point p = adjacencyListGraph.getVertex(list.get(i));
+		String p = adjacencyListGraph.floydWarshall2(points.get(idOne),idOne,idTwo);
+		String[] path = p.split(",");
+		for (int i = 0; i < path.length -1; i++) {
+			Point point = adjacencyListGraph.getVertex(Integer.parseInt(path[i]));
 			if (p != null) {
-				System.out.println(p.toString());
-				LatLng one = new LatLng(p.getLatitude(), p.getLongitude());
-				Point p2 = adjacencyListGraph.getVertex(list.get(i+1));
+				LatLng one = new LatLng(point.getLatitude(), point.getLongitude());
+				Point p2 = adjacencyListGraph.getVertex(Integer.parseInt(path[i+1]));
 				LatLng two = new LatLng(p2.getLatitude(), p2.getLongitude());
 				map.generateArea(one, 400.0);
 				map.generateArea(two, 400.0);
 				map.generateSimplePath(one, two, false);
 			}
-
 		}
 	}
 
@@ -222,11 +209,11 @@ public class EasyTravelController {
 	void showMapUnconnectedZones(ActionEvent event) {
 
 	}
-	
+
 	public int searchByName(String name) {
 		int id = -1;
 		for (int i = 0; i < points.size(); i++) {
-			if(points.get(i).getName().equals(name)) {
+			if (points.get(i).getName().equals(name)) {
 				id = points.get(i).getId();
 			}
 		}

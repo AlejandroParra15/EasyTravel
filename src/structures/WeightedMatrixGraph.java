@@ -134,8 +134,8 @@ public class WeightedMatrixGraph<V> implements Graph<V> {
 	}
 	
 	@Override
-	public Map<Integer, List<Integer>> floydWarshall2(V v) {
-		return (vertices.size() != 0)? Algorithms.floydWarshall2(this, v) : null;
+	public String floydWarshall2(V v, int start, int end) {
+		return (vertices.size() != 0)? Algorithms.floydWarshall2(this, v, start, end) : null;
 	}
 
 	@Override

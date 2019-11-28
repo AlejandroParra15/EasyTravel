@@ -104,7 +104,7 @@ public interface Graph<V> {
 	 * calls the floyd-warshall algorithm to get the shortest paths from and to any vertex
 	 * @return matrix with the shortest paths
 	 */
-	public Map<Integer, List<Integer>> floydWarshall2(V v);
+	public String floydWarshall2(V v, int start, int end);
 	
 	/**
 	 * Calls the Kruskal algorithm to create the shortest path possible that connects all the vertices possibles for a possible disconnected graph
