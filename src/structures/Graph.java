@@ -114,6 +114,13 @@ public interface Graph<V> {
 	public int[][] Kruskal(int[][] p);
 	
 	/**
+	 * Calls the Kruskal algorithm to create the shortest path possible that connects all the vertices possibles for a possible disconnected graph
+	 * @param p Weighted matrix
+	 * @return Matrix showing the connections of the MST
+	 */
+	public DisjointSet<Integer> Kruskal2(int[][] p);
+	
+	/**
 	 * Calls the Prim algorithm the generate a MST for a graph without disconeccions
 	 * @param p Weighted matrix
 	 * @return Array of the weight of the MST

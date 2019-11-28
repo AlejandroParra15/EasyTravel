@@ -26,6 +26,7 @@ import javafx.scene.layout.Pane;
 import model.*;
 import structures.AdjacencyListGraph;
 import structures.Algorithms;
+import structures.DisjointSet;
 import threads.LoadMap;
 
 public class EasyTravelController {
@@ -50,6 +51,8 @@ public class EasyTravelController {
 	private Pane PaneCalculateTime;
 	@FXML
 	private TextField tfVelocity;
+	@FXML
+	private TextField tfTime;
 	@FXML
 	private ComboBox<String> cbDepartureCityTime;
 	@FXML
@@ -116,7 +119,30 @@ public class EasyTravelController {
 
 	@FXML
 	void showMapCalculateTime(ActionEvent event) {
-
+		TravelMap map = new TravelMap();
+		map.makeMap();
+		int idOne = searchByName(cbDepartureCityTime.getSelectionModel().getSelectedItem());
+		int idTwo = searchByName(cbArrivalCityTime.getSelectionModel().getSelectedItem());
+		
+		AdjacencyListGraph<Point> adjacencyListGraph = easyTravel.getList();
+		adjacencyListGraph.WeightedMatrix();
+		String p = adjacencyListGraph.floydWarshall2(points.get(idOne),idOne,idTwo);
+		String[] path = p.split(",");
+		int distance = 0;
+		for (int i = 0; i < path.length -1; i++) {
+			Point point = adjacencyListGraph.getVertex(Integer.parseInt(path[i]));
+			if (point != null) {
+				LatLng one = new LatLng(point.getLatitude(), point.getLongitude());
+				Point p2 = adjacencyListGraph.getVertex(Integer.parseInt(path[i+1]));
+				LatLng two = new LatLng(p2.getLatitude(), p2.getLongitude());
+				map.generateArea(one, 400.0);
+				map.generateArea(two, 400.0);
+				map.generateSimplePath(one, two, false);
+			}
+		}
+		
+		
+		
 	}
 
 	@FXML
@@ -207,7 +233,8 @@ public class EasyTravelController {
 
 	@FXML
 	void showMapUnconnectedZones(ActionEvent event) {
-
+		JOptionPane.showMessageDialog(null, "¡Estás de suerte!"+"\nNo hay zonas inconexas en esta zona","EasyTravel: Colombia",JOptionPane.PLAIN_MESSAGE);
+		
 	}
 
 	public int searchByName(String name) {

@@ -313,6 +313,8 @@ public class Algorithms {
 		}
 		return path;
 	}
+	
+	
 
 	/**
 	 * Kruskals algorithm to obtain the MST from a possibly Disconnected graph
@@ -390,6 +392,85 @@ public class Algorithms {
 			}
 		}
 		return MST;
+	}
+	
+	/**
+	 * Kruskals algorithm to obtain the MST from a possibly Disconnected graph
+	 * 
+	 * @param w Weighted matrix
+	 * @return Matrix showing the connections of the MST
+	 */
+	public static DisjointSet<Integer> Kruskal2(int[][] w) {
+
+		DisjointSet<Integer> set = new DisjointSet<>();
+
+		int[][] MST = new int[w.length][w.length];
+
+		for (int i = 0; i < w.length; i++) {
+			set.makeSet(i);
+		}
+
+		// -----------------------------------------------------------------
+		class obj {
+			int A;
+			int B;
+			int P;
+
+			obj(int a, int b, int p) {
+				A = a;
+				B = b;
+				P = p;
+			}
+
+			int getA() {
+				return A;
+			}
+
+			int getB() {
+				return B;
+			}
+
+			int getP() {
+				return P;
+			}
+		}
+		// -----------------------------------------------------------------
+
+		ArrayList<obj> aristas = new ArrayList<>();
+		for (int i = 0; i < w.length; i++) {
+			for (int j = 0; j < w.length; j++) {
+				int peso = w[i][j];
+				if (peso > 0 && peso < Integer.MAX_VALUE) {
+					obj o = new obj(i, j, peso);
+					aristas.add(o);
+				}
+			}
+		}
+
+		Comparator<obj> comparador = new Comparator<obj>() {
+			@Override
+			public int compare(obj a, obj b) {
+				if (a.getP() > b.getP()) {
+					return 1;
+				} else if (a.getP() < b.getP()) {
+					return -1;
+				} else {
+					return 0;
+				}
+			}
+		};
+		aristas.sort(comparador);
+
+		for (int i = 0; i < aristas.size(); i++) {
+			obj arista = aristas.get(i);
+			if (set.findSet(arista.getA()) != set.findSet(arista.getB())) {
+				set.union(arista.getA(), arista.getB());
+				MST[arista.getA()][arista.getB()] = arista.getP();
+				MST[arista.getB()][arista.getA()] = arista.getP();
+			}
+		}
+		System.out.println("size: "+set.size());
+		return set;
 	}
 
 	/**

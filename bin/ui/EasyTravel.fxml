@@ -165,45 +165,6 @@
                   </Label>
                </children>
             </Pane>
-            <Pane fx:id="PaneCalculateTime" layoutX="1.0" layoutY="196.0" prefHeight="562.0" prefWidth="1022.0" style="-fx-background-color: moccasin; -fx-border-color: BLACK;">
-               <children>
-                  <Label layoutX="512.0" layoutY="27.0" text="Ciudad origen:">
-                     <font>
-                        <Font name="System Bold Italic" size="32.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="505.0" layoutY="118.0" text="Ciudad destino:">
-                     <font>
-                        <Font name="System Bold Italic" size="32.0" />
-                     </font>
-                  </Label>
-                  <Separator layoutX="498.0" layoutY="327.0" prefHeight="13.0" prefWidth="510.0" />
-                  <Button layoutX="662.0" layoutY="477.0" mnemonicParsing="false" onAction="#showMapCalculateTime" prefHeight="51.0" prefWidth="182.0" text="MOSTRAR MAPA" />
-                  <Label layoutX="498.0" layoutY="407.0" text="Generar la ruta más corta:">
-                     <font>
-                        <Font name="System Bold Italic" size="30.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="497.0" layoutY="352.0" prefHeight="40.0" prefWidth="87.0" text="Easy" textFill="RED">
-                     <font>
-                        <Font name="System Bold Italic" size="38.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="584.0" layoutY="352.0" prefHeight="55.0" prefWidth="114.0" text="Travel">
-                     <font>
-                        <Font name="System Bold Italic" size="38.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="511.0" layoutY="218.0" text="Velocidad:">
-                     <font>
-                        <Font name="System Bold Italic" size="32.0" />
-                     </font>
-                  </Label>
-                  <TextField fx:id="tfVelocity" layoutX="777.0" layoutY="226.0" prefHeight="31.0" prefWidth="195.0" />
-                  <ComboBox fx:id="cbDepartureCityTime" layoutX="772.0" layoutY="44.0" prefHeight="25.0" prefWidth="194.0" />
-                  <ComboBox fx:id="cbArrivalCityTime" layoutX="772.0" layoutY="129.0" prefHeight="25.0" prefWidth="194.0" />
-               </children>
-            </Pane>
             <Pane fx:id="EasyTravel" layoutX="1.0" layoutY="196.0" prefHeight="562.0" prefWidth="1022.0" style="-fx-background-color: moccasin; -fx-border-color: BLACK;">
                <children>
                   <Label layoutX="615.0" layoutY="27.0" text="Ciudad origen:">
@@ -235,6 +196,57 @@
                   </Label>
                   <ComboBox fx:id="cbDepartureCity" layoutX="606.0" layoutY="103.0" prefHeight="34.0" prefWidth="294.0" />
                   <ComboBox fx:id="cbArrivalCity" layoutX="606.0" layoutY="256.0" prefHeight="34.0" prefWidth="294.0" />
+                  <Pane fx:id="PaneCalculateTime" prefHeight="562.0" prefWidth="1022.0" style="-fx-background-color: moccasin; -fx-border-color: BLACK;">
+                     <children>
+                        <Label layoutX="512.0" layoutY="27.0" text="Ciudad origen:">
+                           <font>
+                              <Font name="System Bold Italic" size="32.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="505.0" layoutY="118.0" text="Ciudad destino:">
+                           <font>
+                              <Font name="System Bold Italic" size="32.0" />
+                           </font>
+                        </Label>
+                        <Separator layoutX="499.0" layoutY="359.0" prefHeight="13.0" prefWidth="510.0" />
+                        <Button layoutX="663.0" layoutY="497.0" mnemonicParsing="false" onAction="#showMapCalculateTime" prefHeight="51.0" prefWidth="182.0" text="MOSTRAR MAPA" />
+                        <Label layoutX="499.0" layoutY="427.0" text="Generar la ruta más corta:">
+                           <font>
+                              <Font name="System Bold Italic" size="30.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="498.0" layoutY="372.0" prefHeight="40.0" prefWidth="87.0" text="Easy" textFill="RED">
+                           <font>
+                              <Font name="System Bold Italic" size="38.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="585.0" layoutY="372.0" prefHeight="55.0" prefWidth="114.0" text="Travel">
+                           <font>
+                              <Font name="System Bold Italic" size="38.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="509.0" layoutY="179.0" text="Velocidad:">
+                           <font>
+                              <Font name="System Bold Italic" size="32.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="tfVelocity" layoutX="775.0" layoutY="187.0" prefHeight="31.0" prefWidth="195.0" />
+                        <ComboBox fx:id="cbDepartureCityTime" layoutX="772.0" layoutY="44.0" prefHeight="25.0" prefWidth="194.0" />
+                        <ComboBox fx:id="cbArrivalCityTime" layoutX="772.0" layoutY="129.0" prefHeight="25.0" prefWidth="194.0" />
+                        <Label layoutX="506.0" layoutY="242.0" text="Distancia minima:">
+                           <font>
+                              <Font name="System Bold Italic" size="26.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="tfVelocity1" editable="false" layoutX="772.0" layoutY="250.0" prefHeight="31.0" prefWidth="195.0" />
+                        <Label layoutX="508.0" layoutY="301.0" text="Tiempo:">
+                           <font>
+                              <Font name="System Bold Italic" size="33.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="tfTime" editable="false" layoutX="774.0" layoutY="309.0" prefHeight="31.0" prefWidth="195.0" />
+                     </children>
+                  </Pane>
                </children>
             </Pane>
             <Pane layoutY="192.0" prefHeight="567.0" prefWidth="484.0" style="-fx-background-color: moccasin; -fx-border-color: black;">

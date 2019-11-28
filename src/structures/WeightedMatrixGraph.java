@@ -190,4 +190,9 @@ public class WeightedMatrixGraph<V> implements Graph<V> {
 		return (vertices.size() != 0)? Algorithms.dijkstra2(this, v) : null;
 	}
 
+	@Override
+	public DisjointSet<Integer> Kruskal2(int[][] p) {
+		return (vertices.size() != 0)? Algorithms.Kruskal2(Weight) : null;
+	}
+
 }
