@@ -14,6 +14,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Circle?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.shape.QuadCurve?>
 <?import javafx.scene.text.Font?>
@@ -95,12 +96,67 @@
                   </Label>
                </children>
             </Pane>
+            <Pane fx:id="unconnectedZones" layoutX="1.0" layoutY="196.0" prefHeight="562.0" prefWidth="1022.0" style="-fx-background-color: moccasin; -fx-border-color: BLACK;">
+               <children>
+                  <Pane layoutX="481.0" layoutY="3.0" prefHeight="246.0" prefWidth="540.0" style="-fx-background-color: salmon;">
+                     <children>
+                        <Label alignment="CENTER" layoutX="47.0" layoutY="-4.0" prefHeight="224.0" prefWidth="478.0" text="Zonas &#10;no &#10;accesibles:" textAlignment="CENTER">
+                           <font>
+                              <Font name="System Bold Italic" size="46.0" />
+                           </font>
+                        </Label>
+                        <ImageView fitHeight="53.0" fitWidth="41.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/warning.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="53.0" fitWidth="41.0" layoutX="485.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/warning.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="53.0" fitWidth="41.0" layoutX="14.0" layoutY="191.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/warning.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="53.0" fitWidth="41.0" layoutX="485.0" layoutY="191.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/warning.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </Pane>
+                  <Pane layoutX="481.0" layoutY="257.0" prefHeight="303.0" prefWidth="540.0" style="-fx-background-color: yellowgreen;" />
+                  <ImageView fitHeight="118.0" fitWidth="123.0" layoutX="703.0" layoutY="297.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/work-tools.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="687.0" layoutY="382.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/stop.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="52.0" fitWidth="52.0" layoutX="736.0" layoutY="330.0" pickOnBounds="true" preserveRatio="true" rotate="180.0">
+                     <image>
+                        <Image url="@../images/alarm.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="40.0" fitWidth="539.0" layoutX="482.0" layoutY="245.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/road.png" />
+                     </image>
+                  </ImageView>
+                  <Button layoutX="672.0" layoutY="231.0" mnemonicParsing="false" onAction="#showMapUnconnectedZones" prefHeight="66.0" prefWidth="181.0" text="MOSTRAR MAPA" />
+               </children>
+            </Pane>
             <Pane fx:id="pointsOfInterest" layoutX="1.0" layoutY="196.0" prefHeight="562.0" prefWidth="1022.0" style="-fx-background-color: moccasin; -fx-border-color: BLACK;">
                <children>
-                  <Button layoutX="662.0" layoutY="256.0" mnemonicParsing="false" onAction="#showMapPointsOfInterest" prefHeight="51.0" prefWidth="182.0" text="MOSTRAR MAPA" />
-                  <Label layoutX="503.0" layoutY="153.0" text="Puntos de inteŕes:">
+                  <Button layoutX="653.0" layoutY="233.0" mnemonicParsing="false" onAction="#showMapPointsOfInterest" prefHeight="74.0" prefWidth="182.0" text="MOSTRAR MAPA" />
+                  <Label layoutX="587.0" layoutY="155.0" text="Puntos de inteŕes:">
                      <font>
-                        <Font name="System Bold Italic" size="30.0" />
+                        <Font name="System Bold Italic" size="40.0" />
                      </font>
                   </Label>
                   <Label layoutX="498.0" layoutY="30.0" prefHeight="40.0" prefWidth="87.0" text="Easy" textFill="RED">
@@ -128,37 +184,87 @@
                         <Font name="System Bold Italic" size="38.0" />
                      </font>
                   </Label>
+                  <Separator layoutX="498.0" layoutY="133.0" prefHeight="13.0" prefWidth="510.0" />
+                  <Circle fill="#ff9500" layoutX="575.0" layoutY="398.0" radius="50.0" stroke="BLACK" strokeType="INSIDE" />
+                  <ImageView fitHeight="72.0" fitWidth="106.0" layoutX="539.0" layoutY="362.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/maps-and-flags.png" />
+                     </image>
+                  </ImageView>
+                  <Circle fill="#ff9500" layoutX="744.0" layoutY="498.0" radius="50.0" stroke="BLACK" strokeType="INSIDE" />
+                  <ImageView fitHeight="72.0" fitWidth="106.0" layoutX="708.0" layoutY="462.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/maps-and-flags.png" />
+                     </image>
+                  </ImageView>
+                  <Circle fill="#ff9500" layoutX="920.0" layoutY="398.0" radius="50.0" stroke="BLACK" strokeType="INSIDE" />
+                  <ImageView fitHeight="72.0" fitWidth="106.0" layoutX="884.0" layoutY="362.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/maps-and-flags.png" />
+                     </image>
+                  </ImageView>
+                  <Line endX="11.0" endY="-66.5" layoutX="642.0" layoutY="348.0" startX="-53.0" />
+                  <Line endX="48.0" endY="114.0" layoutX="652.0" layoutY="358.0" startX="-33.0" startY="68.0" />
+                  <Line endX="121.0" endY="-14.0" layoutX="780.0" layoutY="362.0" startX="55.0" startY="-80.5" />
+                  <Line endX="55.0" endY="-32.0" layoutX="835.0" layoutY="473.0" startX="-44.0" startY="4.0" />
                </children>
             </Pane>
-            <Pane fx:id="unconnectedZones" layoutX="1.0" layoutY="196.0" prefHeight="562.0" prefWidth="1022.0" style="-fx-background-color: moccasin; -fx-border-color: BLACK;">
+            <Pane fx:id="PaneCalculateTime" layoutX="1.0" layoutY="196.0" prefHeight="562.0" prefWidth="1022.0" style="-fx-background-color: moccasin; -fx-border-color: BLACK;">
                <children>
-                  <Button layoutX="662.0" layoutY="256.0" mnemonicParsing="false" onAction="#showMapUnconnectedZones" prefHeight="51.0" prefWidth="182.0" text="MOSTRAR MAPA" />
-                  <Label layoutX="611.0" layoutY="153.0" text="Zonas no accesibles:">
+                  <Label layoutX="512.0" layoutY="27.0" text="Ciudad origen:">
                      <font>
-                        <Font name="System Bold Italic" size="30.0" />
+                        <Font name="System Bold Italic" size="32.0" />
                      </font>
                   </Label>
-                  <Label layoutX="498.0" layoutY="27.0" prefHeight="40.0" prefWidth="87.0" text="Easy" textFill="RED">
+                  <Label layoutX="508.0" layoutY="86.0" text="Ciudad destino:">
                      <font>
-                        <Font name="System Bold Italic" size="38.0" />
+                        <Font name="System Bold Italic" size="32.0" />
                      </font>
                   </Label>
-                  <Label layoutX="585.0" layoutY="27.0" prefHeight="55.0" prefWidth="114.0" text="Travel">
-                     <font>
-                        <Font name="System Bold Italic" size="38.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="517.0" layoutY="69.0" prefHeight="55.0" prefWidth="50.0" text="Co" textFill="#ffdb00">
+                  <Separator layoutX="499.0" layoutY="359.0" prefHeight="13.0" prefWidth="510.0" />
+                  <Button layoutX="766.0" layoutY="416.0" mnemonicParsing="false" onAction="#showMapCalculateTime" prefHeight="86.0" prefWidth="182.0" text="CALCULAR" />
+                  <Label layoutX="499.0" layoutY="409.0" prefHeight="40.0" prefWidth="87.0" text="Easy" textFill="RED">
                      <font>
                         <Font name="System Bold Italic" size="38.0" />
                      </font>
                   </Label>
-                  <Label layoutX="563.0" layoutY="69.0" prefHeight="55.0" prefWidth="75.0" text="lom" textFill="#006dff">
+                  <Label layoutX="586.0" layoutY="409.0" prefHeight="55.0" prefWidth="114.0" text="Travel">
                      <font>
                         <Font name="System Bold Italic" size="38.0" />
                      </font>
                   </Label>
-                  <Label layoutX="631.0" layoutY="69.0" prefHeight="55.0" prefWidth="63.0" text="bia" textFill="RED">
+                  <Label layoutX="511.0" layoutY="158.0" text="Velocidad:">
+                     <font>
+                        <Font name="System Bold Italic" size="32.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="tfVelocity" layoutX="777.0" layoutY="166.0" prefHeight="31.0" prefWidth="195.0" />
+                  <ComboBox fx:id="cbDepartureCityTime" layoutX="772.0" layoutY="44.0" prefHeight="25.0" prefWidth="194.0" />
+                  <ComboBox fx:id="cbArrivalCityTime" layoutX="775.0" layoutY="97.0" prefHeight="25.0" prefWidth="194.0" />
+                  <Label layoutX="506.0" layoutY="242.0" text="Distancia minima:">
+                     <font>
+                        <Font name="System Bold Italic" size="26.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="tfDistance" editable="false" layoutX="772.0" layoutY="250.0" prefHeight="31.0" prefWidth="195.0" />
+                  <Label layoutX="508.0" layoutY="301.0" text="Tiempo:">
+                     <font>
+                        <Font name="System Bold Italic" size="33.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="tfTime" editable="false" layoutX="774.0" layoutY="309.0" prefHeight="31.0" prefWidth="195.0" />
+                  <Separator layoutX="499.0" layoutY="216.0" prefHeight="13.0" prefWidth="510.0" />
+                  <Label layoutX="502.0" layoutY="451.0" prefHeight="55.0" prefWidth="50.0" text="Co" textFill="#ffdb00">
+                     <font>
+                        <Font name="System Bold Italic" size="38.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="548.0" layoutY="451.0" prefHeight="55.0" prefWidth="75.0" text="lom" textFill="#006dff">
+                     <font>
+                        <Font name="System Bold Italic" size="38.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="616.0" layoutY="451.0" prefHeight="55.0" prefWidth="63.0" text="bia" textFill="RED">
                      <font>
                         <Font name="System Bold Italic" size="38.0" />
                      </font>
@@ -196,60 +302,9 @@
                   </Label>
                   <ComboBox fx:id="cbDepartureCity" layoutX="606.0" layoutY="103.0" prefHeight="34.0" prefWidth="294.0" />
                   <ComboBox fx:id="cbArrivalCity" layoutX="606.0" layoutY="256.0" prefHeight="34.0" prefWidth="294.0" />
-                  <Pane fx:id="PaneCalculateTime" prefHeight="562.0" prefWidth="1022.0" style="-fx-background-color: moccasin; -fx-border-color: BLACK;">
-                     <children>
-                        <Label layoutX="512.0" layoutY="27.0" text="Ciudad origen:">
-                           <font>
-                              <Font name="System Bold Italic" size="32.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="505.0" layoutY="118.0" text="Ciudad destino:">
-                           <font>
-                              <Font name="System Bold Italic" size="32.0" />
-                           </font>
-                        </Label>
-                        <Separator layoutX="499.0" layoutY="359.0" prefHeight="13.0" prefWidth="510.0" />
-                        <Button layoutX="663.0" layoutY="497.0" mnemonicParsing="false" onAction="#showMapCalculateTime" prefHeight="51.0" prefWidth="182.0" text="MOSTRAR MAPA" />
-                        <Label layoutX="499.0" layoutY="427.0" text="Generar la ruta más corta:">
-                           <font>
-                              <Font name="System Bold Italic" size="30.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="498.0" layoutY="372.0" prefHeight="40.0" prefWidth="87.0" text="Easy" textFill="RED">
-                           <font>
-                              <Font name="System Bold Italic" size="38.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="585.0" layoutY="372.0" prefHeight="55.0" prefWidth="114.0" text="Travel">
-                           <font>
-                              <Font name="System Bold Italic" size="38.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="509.0" layoutY="179.0" text="Velocidad:">
-                           <font>
-                              <Font name="System Bold Italic" size="32.0" />
-                           </font>
-                        </Label>
-                        <TextField fx:id="tfVelocity" layoutX="775.0" layoutY="187.0" prefHeight="31.0" prefWidth="195.0" />
-                        <ComboBox fx:id="cbDepartureCityTime" layoutX="772.0" layoutY="44.0" prefHeight="25.0" prefWidth="194.0" />
-                        <ComboBox fx:id="cbArrivalCityTime" layoutX="772.0" layoutY="129.0" prefHeight="25.0" prefWidth="194.0" />
-                        <Label layoutX="506.0" layoutY="242.0" text="Distancia minima:">
-                           <font>
-                              <Font name="System Bold Italic" size="26.0" />
-                           </font>
-                        </Label>
-                        <TextField fx:id="tfVelocity1" editable="false" layoutX="772.0" layoutY="250.0" prefHeight="31.0" prefWidth="195.0" />
-                        <Label layoutX="508.0" layoutY="301.0" text="Tiempo:">
-                           <font>
-                              <Font name="System Bold Italic" size="33.0" />
-                           </font>
-                        </Label>
-                        <TextField fx:id="tfTime" editable="false" layoutX="774.0" layoutY="309.0" prefHeight="31.0" prefWidth="195.0" />
-                     </children>
-                  </Pane>
                </children>
             </Pane>
-            <Pane layoutY="192.0" prefHeight="567.0" prefWidth="484.0" style="-fx-background-color: moccasin; -fx-border-color: black;">
+            <Pane fx:id="paneConfiguration" layoutY="192.0" prefHeight="567.0" prefWidth="484.0" style="-fx-background-color: moccasin; -fx-border-color: black;">
                <children>
                   <Label layoutX="66.0" layoutY="27.0" text="Configura tu mapa:">
                      <font>
@@ -259,7 +314,7 @@
                         <Tooltip text="Elije el archivo que posee los puntos de tu interés" textAlignment="CENTER" />
                      </tooltip>
                   </Label>
-                  <TextField fx:id="tfPath1" layoutX="66.0" layoutY="98.0" prefHeight="43.0" prefWidth="251.0" promptText="Conozco la ruta" style="-fx-border-color: black;" />
+                  <TextField fx:id="tfPath1" layoutX="66.0" layoutY="98.0" prefHeight="43.0" prefWidth="251.0" promptText="Conozco la ruta de memoria" style="-fx-border-color: black;" />
                   <Button layoutX="329.0" layoutY="98.0" mnemonicParsing="false" onAction="#loadFileData" prefHeight="43.0" prefWidth="75.0" text="cargar" />
                   <Button layoutX="66.0" layoutY="156.0" mnemonicParsing="false" onAction="#SearchFileData" prefHeight="39.0" prefWidth="338.0" text="Buscar en mi ordenador" />
                   <TextArea fx:id="txtInfo1" editable="false" layoutX="66.0" layoutY="281.0" prefHeight="259.0" prefWidth="344.0" style="-fx-border-color: black;" wrapText="true" />

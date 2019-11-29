@@ -23,14 +23,19 @@ public class LoadMap extends Thread {
 				sleep(1000);
 				easyTravelController.addMessage(".");
 			}
-			if(msg.equals("la ruta ")) {
+			if(msg.equals("la mejor ruta ")) {
 				easyTravelController.addMessage(" | Ruta Creada");
 				easyTravelController.generatePath(travelMap);
 				sleep(2000);
 				easyTravelController.setMessage("");
-			}else {
+			}else if(msg.equals("el mapa ")) {
 				easyTravelController.addMessage(" | Mapa creado");
 				easyTravelController.drawPoints(travelMap);
+				sleep(2000);
+				easyTravelController.setMessage("");
+			}else {
+				easyTravelController.addMessage(" | Ruta Creada");
+				easyTravelController.generatePathToCalculateTime(travelMap);
 				sleep(2000);
 				easyTravelController.setMessage("");
 			}

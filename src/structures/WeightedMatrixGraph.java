@@ -137,6 +137,11 @@ public class WeightedMatrixGraph<V> implements Graph<V> {
 	public String floydWarshall2(V v, int start, int end) {
 		return (vertices.size() != 0)? Algorithms.floydWarshall2(this, v, start, end) : null;
 	}
+	
+	@Override
+	public int floydWarshall3(V v, int start, int end) {
+		return (vertices.size() != 0) ? Algorithms.floydWarshall3(this, v, start, end) : null;
+	}
 
 	@Override
 	public int getVertexSize() {

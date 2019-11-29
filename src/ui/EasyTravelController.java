@@ -1,8 +1,7 @@
 package ui;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 import javax.swing.JFileChooser;
@@ -25,8 +24,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import model.*;
 import structures.AdjacencyListGraph;
-import structures.Algorithms;
-import structures.DisjointSet;
+
 import threads.LoadMap;
 
 public class EasyTravelController {
@@ -44,6 +42,8 @@ public class EasyTravelController {
 	@FXML
 	private ComboBox<String> cbArrivalCity;
 	@FXML
+	private Pane paneConfiguration;
+	@FXML
 	private Pane pointsOfInterest;
 	@FXML
 	private Pane unconnectedZones;
@@ -53,6 +53,8 @@ public class EasyTravelController {
 	private TextField tfVelocity;
 	@FXML
 	private TextField tfTime;
+	@FXML
+	private TextField tfDistance;
 	@FXML
 	private ComboBox<String> cbDepartureCityTime;
 	@FXML
@@ -117,32 +119,58 @@ public class EasyTravelController {
 		}
 	}
 
+	int velocity = 0;
+
 	@FXML
 	void showMapCalculateTime(ActionEvent event) {
-		TravelMap map = new TravelMap();
-		map.makeMap();
+
+		if (!tfVelocity.getText().equals("")) {
+			try {
+				velocity = Integer.parseInt(tfVelocity.getText());
+			} catch (Exception e) {
+				JOptionPane.showMessageDialog(null, "Debes ingresar una velocidad válida", "Ha ocurrido un error",
+						JOptionPane.ERROR_MESSAGE);
+			}
+			if (velocity != 0) {
+				TravelMap map = new TravelMap();
+				map.makeMap();
+				LoadMap lm = new LoadMap(this, map, "la ruta ");
+				lm.setDaemon(true);
+				lm.start();
+			} else {
+				JOptionPane.showMessageDialog(null, "La velocidad no puede ser 0", "Ha ocurrido un error",
+						JOptionPane.ERROR_MESSAGE);
+			}
+		} else {
+			JOptionPane.showMessageDialog(null, "¡Debes ingresar una velociad!", "Ha ocurrido un error",
+					JOptionPane.ERROR_MESSAGE);
+		}
+
+	}
+
+	public void generatePathToCalculateTime(TravelMap map) {
 		int idOne = searchByName(cbDepartureCityTime.getSelectionModel().getSelectedItem());
 		int idTwo = searchByName(cbArrivalCityTime.getSelectionModel().getSelectedItem());
-		
 		AdjacencyListGraph<Point> adjacencyListGraph = easyTravel.getList();
 		adjacencyListGraph.WeightedMatrix();
-		String p = adjacencyListGraph.floydWarshall2(points.get(idOne),idOne,idTwo);
+		String p = adjacencyListGraph.floydWarshall2(points.get(idOne), idOne, idTwo);
 		String[] path = p.split(",");
-		int distance = 0;
-		for (int i = 0; i < path.length -1; i++) {
+		int distance = adjacencyListGraph.floydWarshall3(points.get(idOne), idOne, idTwo);
+		for (int i = 0; i < path.length - 1; i++) {
 			Point point = adjacencyListGraph.getVertex(Integer.parseInt(path[i]));
 			if (point != null) {
 				LatLng one = new LatLng(point.getLatitude(), point.getLongitude());
-				Point p2 = adjacencyListGraph.getVertex(Integer.parseInt(path[i+1]));
+				Point p2 = adjacencyListGraph.getVertex(Integer.parseInt(path[i + 1]));
 				LatLng two = new LatLng(p2.getLatitude(), p2.getLongitude());
 				map.generateArea(one, 400.0);
 				map.generateArea(two, 400.0);
 				map.generateSimplePath(one, two, false);
 			}
 		}
-		
-		
-		
+		tfDistance.setText(distance + " km");
+		double d = (double)distance / velocity;
+		DecimalFormat df = new DecimalFormat("#.00");
+		tfTime.setText(df.format(d)+" horas");
 	}
 
 	@FXML
@@ -181,7 +209,7 @@ public class EasyTravelController {
 	void showMapTravel(ActionEvent event) {
 		TravelMap map = new TravelMap();
 		map.makeMap();
-		LoadMap lm = new LoadMap(this, map, "la ruta ");
+		LoadMap lm = new LoadMap(this, map, "la mejor ruta ");
 		lm.setDaemon(true);
 		lm.start();
 	}
@@ -193,13 +221,13 @@ public class EasyTravelController {
 
 		AdjacencyListGraph<Point> adjacencyListGraph = easyTravel.getList();
 		adjacencyListGraph.WeightedMatrix();
-		String p = adjacencyListGraph.floydWarshall2(points.get(idOne),idOne,idTwo);
+		String p = adjacencyListGraph.floydWarshall2(points.get(idOne), idOne, idTwo);
 		String[] path = p.split(",");
-		for (int i = 0; i < path.length -1; i++) {
+		for (int i = 0; i < path.length - 1; i++) {
 			Point point = adjacencyListGraph.getVertex(Integer.parseInt(path[i]));
 			if (p != null) {
 				LatLng one = new LatLng(point.getLatitude(), point.getLongitude());
-				Point p2 = adjacencyListGraph.getVertex(Integer.parseInt(path[i+1]));
+				Point p2 = adjacencyListGraph.getVertex(Integer.parseInt(path[i + 1]));
 				LatLng two = new LatLng(p2.getLatitude(), p2.getLongitude());
 				map.generateArea(one, 400.0);
 				map.generateArea(two, 400.0);
@@ -233,8 +261,9 @@ public class EasyTravelController {
 
 	@FXML
 	void showMapUnconnectedZones(ActionEvent event) {
-		JOptionPane.showMessageDialog(null, "¡Estás de suerte!"+"\nNo hay zonas inconexas en esta zona","EasyTravel: Colombia",JOptionPane.PLAIN_MESSAGE);
-		
+		JOptionPane.showMessageDialog(null, "¡Estás de suerte!" + "\nNo hay zonas inconexas en esta zona",
+				"EasyTravel: Colombia", JOptionPane.PLAIN_MESSAGE);
+
 	}
 
 	public int searchByName(String name) {
@@ -255,6 +284,7 @@ public class EasyTravelController {
 		pointsOfInterest.setVisible(false);
 		unconnectedZones.setVisible(false);
 		PaneCalculateTime.setVisible(false);
+		paneConfiguration.setVisible(false);
 	}
 
 	@FXML
@@ -265,6 +295,7 @@ public class EasyTravelController {
 		pointsOfInterest.setVisible(false);
 		unconnectedZones.setVisible(false);
 		PaneCalculateTime.setVisible(false);
+		paneConfiguration.setVisible(false);
 	}
 
 	@FXML
@@ -275,6 +306,7 @@ public class EasyTravelController {
 		pointsOfInterest.setVisible(false);
 		unconnectedZones.setVisible(false);
 		PaneCalculateTime.setVisible(true);
+		paneConfiguration.setVisible(true);
 	}
 
 	@FXML
@@ -285,6 +317,7 @@ public class EasyTravelController {
 		pointsOfInterest.setVisible(false);
 		unconnectedZones.setVisible(false);
 		PaneCalculateTime.setVisible(false);
+		paneConfiguration.setVisible(true);
 	}
 
 	@FXML
@@ -295,6 +328,7 @@ public class EasyTravelController {
 		pointsOfInterest.setVisible(true);
 		unconnectedZones.setVisible(false);
 		PaneCalculateTime.setVisible(false);
+		paneConfiguration.setVisible(true);
 	}
 
 	@FXML
@@ -305,6 +339,7 @@ public class EasyTravelController {
 		pointsOfInterest.setVisible(false);
 		unconnectedZones.setVisible(true);
 		PaneCalculateTime.setVisible(false);
+		paneConfiguration.setVisible(true);
 	}
 
 	@FXML

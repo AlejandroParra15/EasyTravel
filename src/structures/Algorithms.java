@@ -7,10 +7,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Stack;
-import static java.lang.String.format;
-
-import model.Point;
-
 import java.util.Queue;
 
 /**
@@ -314,6 +310,71 @@ public class Algorithms {
 		return path;
 	}
 	
+	public static <V> int floydWarshall3(Graph<V> gg, V vec, int start, int end) {
+		int[][] w = gg.getWeight();
+		int n = w.length;
+		int[][] D = w;
+		int v = 0;
+		Map<Integer, List<Integer>> x = new HashMap<Integer, List<Integer>>();
+
+		for (int i = 0; i < w.length; i++) {
+			x.put(i, new ArrayList<Integer>());
+			x.get(i).add(gg.getIndex(vec));
+		}
+		int[][] next = new int[n][n];
+		for (int i = 0; i < next.length; i++) {
+			for (int j = 0; j < next.length; j++)
+				if (i != j)
+					next[i][j] = j + 1;
+		}
+
+		for (int k = 0; k < n; k++) {
+			for (int i = 0; i < n; i++) {
+				for (int j = 0; j < n; j++) {
+
+					if (j != k || i != k) {
+						if (D[i][k] != Integer.MAX_VALUE && D[k][j] != Integer.MAX_VALUE) {
+
+							v = D[i][k] + D[k][j];
+
+							if (D[i][j] > v) {
+								D[i][j] = v;
+								next[i][j] = next[i][k];
+								if (i == gg.getIndex(vec)) {
+									x.get(j).add(k);
+								}
+							}
+
+						}
+
+					}
+
+				}
+			}
+		}
+
+		for (int i = 0; i < w.length; i++) {
+			if (i != gg.getIndex(vec))
+				x.get(i).add(i);
+		}
+		
+		int d = printResult2(D, next,start,end);
+		return d;
+	}
+
+	static int printResult2(int[][] dist, int[][] next, int start, int end) {
+		int distance = 0;
+		for (int i = 0; i < next.length; i++) {
+			for (int j = 0; j < next.length; j++) {
+				if (i != j) {
+					if(i == start && j == end) {
+						distance = dist[i][j];
+					}
+				}
+			}
+		}
+		return distance;
+	}
 	
 
 	/**

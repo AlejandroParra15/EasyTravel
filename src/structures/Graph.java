@@ -107,6 +107,12 @@ public interface Graph<V> {
 	public String floydWarshall2(V v, int start, int end);
 	
 	/**
+	 * calls the floyd-warshall algorithm to get the shortest paths from and to any vertex
+	 * @return matrix with the shortest paths
+	 */
+	public int floydWarshall3(V v, int start, int end);
+	
+	/**
 	 * Calls the Kruskal algorithm to create the shortest path possible that connects all the vertices possibles for a possible disconnected graph
 	 * @param p Weighted matrix
 	 * @return Matrix showing the connections of the MST
